@@ -63,14 +63,14 @@ public class Main_Menu {
 			if(!Data_Overview.getUserAccount().equals(null)){
 				welcomeText.setText("Welcome, "+Data_Overview.getUserAccount().getFullName());
 				loginButton.setText("Logout");
-				loginButton.setOnAction(e->openLogoutDialog());
+				loginButton.setOnAction(e-> logout());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private void openLogoutDialog(){
+	private void logout(){
 	
 	}
 }
