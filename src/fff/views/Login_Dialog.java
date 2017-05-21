@@ -16,8 +16,6 @@ public class Login_Dialog {
 	@FXML private Button loginButton;
 	@FXML private Text loginFailState;
 	
-	private Stage dialog;
-	
 	@SuppressWarnings("unused")
 	@FXML private void initialize(){
 		usernameField.setOnKeyPressed(e-> {
@@ -37,6 +35,7 @@ public class Login_Dialog {
 		if(user!=null)
 			if(user.getPassword().equals(password)) {
 				_Overview_.setUserAccount(user);
+				Stage dialog = (Stage) loginFailState.getScene().getWindow();
 				dialog.close();
 			}
 			else loginFailed("Password Invalid");
@@ -49,9 +48,5 @@ public class Login_Dialog {
 		f.setFromValue(1);
 		f.setToValue(0);
 		f.play();
-	}
-	
-	public void setDialog(Stage dialog) {
-		this.dialog = dialog;
 	}
 }

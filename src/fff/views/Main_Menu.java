@@ -54,10 +54,8 @@ public class Main_Menu {
 			loginDialog.setTitle("Login");
 			loginDialog.initModality(Modality.WINDOW_MODAL);
 			loginDialog.initOwner(_Overview_.getStage());
-			
-			Login_Dialog dialog = loader.getController();
-			dialog.setDialog(loginDialog);
-			
+			loginDialog.setResizable(false);
+			loginDialog.sizeToScene();
 			loginDialog.showAndWait();
 			
 			if(_Overview_.getUserAccount() != null){
