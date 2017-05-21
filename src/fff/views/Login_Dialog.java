@@ -13,8 +13,11 @@ public class Login_Dialog {
 	@FXML private Text loginFailState;
 	
 	@FXML private void initialize(){
-	
+		loginButton.setOnAction(e->checkDetails());
 	}
 	
-	
+	private void checkDetails(){
+		System.out.println(	usernameField.getText()+" "+
+							passwordField.getText());
+	}
 }
