@@ -66,7 +66,7 @@
                   </StackPane>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
                     <buttons>
-                      <Button mnemonicParsing="false" text="View Account" />
+                      <Button mnemonicParsing="false" text="New Account" />
                         <Button mnemonicParsing="false" text="Login" />
                     </buttons>
                   </ButtonBar>
