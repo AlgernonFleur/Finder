@@ -29,9 +29,7 @@ public final class Data_Overview {
 	}
 	
 	public static void setUserAccount(UserAccount userAccount) {
-		if (Data_Overview.userAccount == null)
-			Data_Overview.userAccount = userAccount;
-		else Data_Overview.throwError();
+		Data_Overview.userAccount = userAccount;
 	}
 	
 	public static Stage getStage() {

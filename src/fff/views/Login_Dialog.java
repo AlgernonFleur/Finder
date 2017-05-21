@@ -1,10 +1,13 @@
 package fff.views;
 
 import fff.models.users.UserAccount;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Login_Dialog {
 	
@@ -12,6 +15,8 @@ public class Login_Dialog {
 	@FXML private TextField passwordField;
 	@FXML private Button loginButton;
 	@FXML private Text loginFailState;
+	
+	private Stage dialog;
 	
 	@SuppressWarnings("unused")
 	@FXML private void initialize(){
@@ -30,8 +35,23 @@ public class Login_Dialog {
 		
 		UserAccount user = Data_Overview.getDatabase().getUser(username);
 		if(user!=null)
-			if(user.getPassword().equals(password)) System.out.println(user.getFullName());
-			else loginFailState.setText("Password Invalid");
-		else loginFailState.setText("Cannot find User");
+			if(user.getPassword().equals(password)) {
+				Data_Overview.setUserAccount(user);
+				dialog.close();
+			}
+			else loginFailed("Password Invalid");
+		else loginFailed("Cannot find User");
+	}
+	
+	private void loginFailed(String message){
+		loginFailState.setText(message);
+		FadeTransition f = new FadeTransition(Duration.millis(1500),loginFailState);
+		f.setFromValue(1);
+		f.setToValue(0);
+		f.play();
+	}
+	
+	public void setDialog(Stage dialog) {
+		this.dialog = dialog;
 	}
 }

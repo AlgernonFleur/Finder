@@ -55,9 +55,22 @@ public class Main_Menu {
 			loginDialog.initModality(Modality.WINDOW_MODAL);
 			loginDialog.initOwner(Data_Overview.getStage());
 			
+			Login_Dialog dialog = loader.getController();
+			dialog.setDialog(loginDialog);
+			
 			loginDialog.showAndWait();
+			
+			if(!Data_Overview.getUserAccount().equals(null)){
+				welcomeText.setText("Welcome, "+Data_Overview.getUserAccount().getFullName());
+				loginButton.setText("Logout");
+				loginButton.setOnAction(e->openLogoutDialog());
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void openLogoutDialog(){
+	
 	}
 }
