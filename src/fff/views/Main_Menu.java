@@ -53,15 +53,15 @@ public class Main_Menu {
 			loginDialog.setScene(new Scene(loader.load()));
 			loginDialog.setTitle("Login");
 			loginDialog.initModality(Modality.WINDOW_MODAL);
-			loginDialog.initOwner(Data_Overview.getStage());
+			loginDialog.initOwner(_Overview_.getStage());
 			
 			Login_Dialog dialog = loader.getController();
 			dialog.setDialog(loginDialog);
 			
 			loginDialog.showAndWait();
 			
-			if(!Data_Overview.getUserAccount().equals(null)){
-				welcomeText.setText("Welcome, "+Data_Overview.getUserAccount().getFullName());
+			if(!_Overview_.getUserAccount().equals(null)){
+				welcomeText.setText("Welcome, "+ _Overview_.getUserAccount().getFullName());
 				accountButton.setText("View Account");
 				loginButton.setText("Logout");
 				loginButton.setOnAction(e-> logout());
@@ -72,7 +72,7 @@ public class Main_Menu {
 	}
 	
 	private void logout() {
-		Data_Overview.setUserAccount(null);
+		_Overview_.setUserAccount(null);
 		welcomeText.setText("");
 		accountButton.setText("New Account");
 		loginButton.setText("Login");

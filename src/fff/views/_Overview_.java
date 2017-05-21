@@ -4,13 +4,13 @@ import fff.models.Database;
 import fff.models.users.UserAccount;
 import javafx.stage.Stage;
 
-public final class Data_Overview {
+public final class _Overview_ {
 	
 	private static Database database;
 	private static UserAccount userAccount;
 	private static Stage stage;
 	
-	private Data_Overview(){
+	private _Overview_(){
 	
 	}
 	
@@ -19,9 +19,9 @@ public final class Data_Overview {
 	}
 	
 	public static void setDatabase(Database database) {
-		if (Data_Overview.database == null)
-			Data_Overview.database = database;
-		else Data_Overview.throwError();
+		if (_Overview_.database == null)
+			_Overview_.database = database;
+		else _Overview_.throwError();
 	}
 	
 	public static UserAccount getUserAccount() {
@@ -29,7 +29,7 @@ public final class Data_Overview {
 	}
 	
 	public static void setUserAccount(UserAccount userAccount) {
-		Data_Overview.userAccount = userAccount;
+		_Overview_.userAccount = userAccount;
 	}
 	
 	public static Stage getStage() {
@@ -37,9 +37,9 @@ public final class Data_Overview {
 	}
 	
 	public static void setStage(Stage stage) {
-		if (Data_Overview.stage == null)
-			Data_Overview.stage = stage;
-		else Data_Overview.throwError();
+		if (_Overview_.stage == null)
+			_Overview_.stage = stage;
+		else _Overview_.throwError();
 	}
 	
 	private static void throwError(){

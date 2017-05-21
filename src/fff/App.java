@@ -5,7 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import fff.views.Data_Overview;
+import fff.views._Overview_;
 
 import java.io.IOException;
 
@@ -14,13 +14,13 @@ public class App extends Application {
 	public App() throws IOException {
 		Database database = new Database();
 		database.readData();
-		Data_Overview.setDatabase(database);
-		Data_Overview.setUserAccount(null);
+		_Overview_.setDatabase(database);
+		_Overview_.setUserAccount(null);
 	}
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		Data_Overview.setStage(primaryStage);
+		_Overview_.setStage(primaryStage);
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(
