@@ -3,13 +3,21 @@ package views;
 import models.Database;
 import models.users.UserAccount;
 
-public class PageController {
+public final class DataOverview {
 	
-	private static Database database = new Database();
+	private static Database database;
 	private static UserAccount userAccount;
+	
+	private DataOverview(){
+	
+	}
 	
 	public static Database getDatabase() {
 		return database;
+	}
+	
+	public static void setDatabase(Database database) {
+		DataOverview.database = database;
 	}
 	
 	public static UserAccount getUserAccount() {
@@ -17,6 +25,6 @@ public class PageController {
 	}
 	
 	public static void setUserAccount(UserAccount userAccount) {
-		PageController.userAccount = userAccount;
+		DataOverview.userAccount = userAccount;
 	}
 }

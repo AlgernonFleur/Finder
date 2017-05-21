@@ -24,16 +24,9 @@ public class Database {
 		this.owners = FXCollections.observableArrayList();
 		this.customers = FXCollections.observableArrayList();
 		this.customers = FXCollections.observableArrayList();
-		
-		try {
-			readData();
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
 	}
 	
-	private void readData() throws IOException {
+	public void readData() throws IOException {
 		readUsers("admin");
 		readUsers("owner");
 		readUsers("customer");
@@ -97,13 +90,5 @@ public class Database {
 	
 	public ObservableList<Customer> getCustomers() {
 		return customers;
-	}
-	
-	public static void main(String[] args) throws IOException {
-		Database database = new Database();
-		database.readUsers("admin");
-		database.readUsers("owner");
-		database.readUsers("customer");
-		System.out.println(database.getUser("Eau11").getClass().getSimpleName());
 	}
 }
