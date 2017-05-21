@@ -1,9 +1,11 @@
-import models.Database;
+package fff;
+
+import fff.models.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import views.Data_Overview;
+import fff.views.Data_Overview;
 
 import java.io.IOException;
 
@@ -19,7 +21,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("views/Main_Menu.fxml"));
+		loader.setLocation(App.class.getResource("fff/views/Main_Menu.fxml"));
 		
 		primaryStage.setScene(new Scene(loader.load()));
 		

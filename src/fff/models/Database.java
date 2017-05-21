@@ -1,9 +1,9 @@
-package models;
+package fff.models;
 
-import models.users.Admin;
-import models.users.Customer;
-import models.users.Owner;
-import models.users.UserAccount;
+import fff.models.users.Admin;
+import fff.models.users.Customer;
+import fff.models.users.Owner;
+import fff.models.users.UserAccount;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

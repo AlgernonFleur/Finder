@@ -1,8 +1,10 @@
-package views;
+package fff.views;
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -27,5 +29,9 @@ public class Main_Menu {
 		if(!searchField.getText().equals("")){
 			System.out.println(searchField.getText()+" "+searchCombo.getValue());
 		}
+	}
+	
+	private void openLoginDialog(){
+		FXMLLoader loader = new FXMLLoader();
 	}
 }

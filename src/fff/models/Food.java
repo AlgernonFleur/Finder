@@ -1,4 +1,4 @@
-package models;
+package fff.models;
 
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.StringProperty;

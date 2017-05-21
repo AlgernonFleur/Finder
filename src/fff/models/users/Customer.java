@@ -1,6 +1,6 @@
-package models.users;
+package fff.models.users;
 
-import models.Rating;
+import fff.models.Rating;
 import javafx.collections.ObservableList;
 
 public class Customer extends UserAccount {

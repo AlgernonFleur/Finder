@@ -1,6 +1,6 @@
-package models.users;
+package fff.models.users;
 
-import models.Restaurant;
+import fff.models.Restaurant;
 import javafx.collections.ObservableList;
 
 public class Owner extends UserAccount {

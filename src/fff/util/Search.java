@@ -1,4 +1,4 @@
-package util;
+package fff.util;
 
 public class Search {
 
