@@ -1,5 +1,6 @@
 package fff.views;
 
+import fff.models.users.UserAccount;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,7 +18,13 @@ public class Login_Dialog {
 	}
 	
 	private void checkDetails(){
-		System.out.println(	usernameField.getText()+" "+
-							passwordField.getText());
+		String username = usernameField.getText();
+		String password = passwordField.getText();
+		
+		UserAccount user = Data_Overview.getDatabase().getUser(username);
+		if(user!=null)
+			if(user.getPassword().equals(password)) System.out.println(user.getFullName());
+			else loginFailState.setText("Password Invalid");
+		else loginFailState.setText("Cannot find User");
 	}
 }
