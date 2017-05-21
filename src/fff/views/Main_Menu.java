@@ -60,7 +60,7 @@ public class Main_Menu {
 			
 			loginDialog.showAndWait();
 			
-			if(!(_Overview_.getUserAccount() == null)){
+			if(_Overview_.getUserAccount() != null){
 				welcomeText.setText("Welcome, "+ _Overview_.getUserAccount().getFullName());
 				accountButton.setText("View Account");
 				loginButton.setText("Logout");
