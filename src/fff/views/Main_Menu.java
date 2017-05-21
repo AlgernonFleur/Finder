@@ -62,6 +62,7 @@ public class Main_Menu {
 			
 			if(!Data_Overview.getUserAccount().equals(null)){
 				welcomeText.setText("Welcome, "+Data_Overview.getUserAccount().getFullName());
+				accountButton.setText("View Account");
 				loginButton.setText("Logout");
 				loginButton.setOnAction(e-> logout());
 			}
@@ -70,7 +71,11 @@ public class Main_Menu {
 		}
 	}
 	
-	private void logout(){
-	
+	private void logout() {
+		Data_Overview.setUserAccount(null);
+		welcomeText.setText("");
+		accountButton.setText("New Account");
+		loginButton.setText("Login");
+		loginButton.setOnAction(e->openLoginDialog());
 	}
 }

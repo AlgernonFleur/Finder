@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
@@ -66,9 +67,12 @@
                   </StackPane>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
                     <buttons>
-                      <Button fx:id="accountButton" mnemonicParsing="false" text="New Account" />
+                      <Button fx:id="accountButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="New Account" />
                         <Button fx:id="loginButton" mnemonicParsing="false" text="Login" />
                     </buttons>
+                     <padding>
+                        <Insets right="5.0" top="5.0" />
+                     </padding>
                   </ButtonBar>
                </children>
             </GridPane>
