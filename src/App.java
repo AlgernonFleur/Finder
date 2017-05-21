@@ -13,6 +13,7 @@ public class App extends Application {
 		Database database = new Database();
 		database.readData();
 		DataOverview.setDatabase(database);
+		DataOverview.setUserAccount(null);
 	}
 	
 	@Override
