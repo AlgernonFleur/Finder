@@ -4,6 +4,7 @@ import fff.models.Database;
 import fff.models.users.UserAccount;
 import javafx.stage.Stage;
 
+@SuppressWarnings("WeakerAccess")
 public final class _Overview_ {
 	
 	private static Database database;
