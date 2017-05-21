@@ -3,12 +3,12 @@ package views;
 import models.Database;
 import models.users.UserAccount;
 
-public final class DataOverview {
+public final class Data_Overview {
 	
 	private static Database database;
 	private static UserAccount userAccount;
 	
-	private DataOverview(){
+	private Data_Overview(){
 	
 	}
 	
@@ -17,7 +17,7 @@ public final class DataOverview {
 	}
 	
 	public static void setDatabase(Database database) {
-		DataOverview.database = database;
+		Data_Overview.database = database;
 	}
 	
 	public static UserAccount getUserAccount() {
@@ -25,6 +25,6 @@ public final class DataOverview {
 	}
 	
 	public static void setUserAccount(UserAccount userAccount) {
-		DataOverview.userAccount = userAccount;
+		Data_Overview.userAccount = userAccount;
 	}
 }

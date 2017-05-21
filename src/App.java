@@ -3,7 +3,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import views.DataOverview;
+import views.Data_Overview;
 
 import java.io.IOException;
 
@@ -12,8 +12,8 @@ public class App extends Application {
 	public App() throws IOException {
 		Database database = new Database();
 		database.readData();
-		DataOverview.setDatabase(database);
-		DataOverview.setUserAccount(null);
+		Data_Overview.setDatabase(database);
+		Data_Overview.setUserAccount(null);
 	}
 	
 	@Override
