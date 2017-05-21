@@ -15,4 +15,6 @@ public class Login_Dialog {
 	@FXML private void initialize(){
 	
 	}
+	
+	
 }

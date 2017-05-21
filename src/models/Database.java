@@ -24,15 +24,22 @@ public class Database {
 		this.owners = FXCollections.observableArrayList();
 		this.customers = FXCollections.observableArrayList();
 		this.customers = FXCollections.observableArrayList();
+		
+		try {
+			readData();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 	
-	public void readData() throws IOException {
+	private void readData() throws IOException {
 		readUsers("admin");
 		readUsers("owner");
 		readUsers("customer");
 	}
 	
-	public void readUsers(String type) throws IOException {
+	private void readUsers(String type) throws IOException {
 		String path = "data/users/"+type+"s";
 		InputStream data = Database.class.getResourceAsStream(path);
 		BufferedReader br = new BufferedReader(new InputStreamReader(data));
