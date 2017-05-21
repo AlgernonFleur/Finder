@@ -39,15 +39,16 @@ public class Database {
 		String res;
 		
 		while((res=br.readLine())!=null){
-			String userPath = path+"/"+res+"/details.txt";
+			String userPath = path+"/"+res+"/details.csv";
 			InputStream userData = Database.class.getResourceAsStream(userPath);
 			BufferedReader userBr = new BufferedReader(new InputStreamReader(userData));
 			
-			String ID = userBr.readLine();
-			String username = userBr.readLine();
-			String password = userBr.readLine();
-			String fullName = userBr.readLine();
-			String email = userBr.readLine();
+			String[] line = userBr.readLine().split(",");
+			String ID = line[0];
+			String username = line[1];
+			String password = line[2];
+			String fullName = line[3];
+			String email = line[4];
 			
 			switch(type){
 				case "admin":
