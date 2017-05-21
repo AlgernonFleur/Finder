@@ -20,8 +20,11 @@ public class App extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+		Data_Overview.setStage(primaryStage);
+		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("fff/views/Main_Menu.fxml"));
+		loader.setLocation(
+			App.class.getResource("views/Main_Menu.fxml"));
 		
 		primaryStage.setScene(new Scene(loader.load()));
 		
