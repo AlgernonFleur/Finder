@@ -23,13 +23,14 @@ public class Database {
 		this.admins = FXCollections.observableArrayList();
 		this.owners = FXCollections.observableArrayList();
 		this.customers = FXCollections.observableArrayList();
-		this.customers = FXCollections.observableArrayList();
+		this.restaurants = FXCollections.observableArrayList();
 	}
 	
 	public void readData() throws IOException {
 		readUsers("admin");
 		readUsers("owner");
 		readUsers("customer");
+		readRestaurants();
 	}
 	
 	private void readUsers(String type) throws IOException {
@@ -70,8 +71,33 @@ public class Database {
 		br.close();
 	}
 	
-	private void readRestaurants(){
-	
+	public void readRestaurants() throws IOException {
+		String path = "data/restaurants";
+		InputStream data = Database.class.getResourceAsStream(path);
+		BufferedReader br = new BufferedReader(new InputStreamReader(data));
+		String res;
+		while((res=br.readLine())!=null) {
+			String resPath = path+"/"+res+"/details.csv";
+			InputStream resData = Database.class.getResourceAsStream(resPath);
+			BufferedReader resBr = new BufferedReader(new InputStreamReader(resData));
+			
+			String[] line = resBr.readLine().split(",");
+			String id = line[0];
+			String name = line[1];
+			int post = Integer.parseInt(line[2]);
+			String cuisine = line[3];
+			String owner = line[4];
+			
+			Restaurant restaurant = new Restaurant(id,name,post,cuisine,owner);
+			restaurants.add(restaurant);
+			
+			int ownerIndex = Integer.parseInt(owner.substring(1));
+			Owner o = owners.get(ownerIndex);
+			o.addRestaurant(restaurant);
+			
+			resBr.close();
+		}
+		br.close();
 	}
 	
 	public UserAccount getUser(String username){
@@ -84,6 +110,8 @@ public class Database {
 		return null;
 	}
 	
+	
+	
 	public ObservableList<Admin> getAdmins() {
 		return admins;
 	}
@@ -94,5 +122,14 @@ public class Database {
 	
 	public ObservableList<Customer> getCustomers() {
 		return customers;
+	}
+	
+	public static void main(String[] args) {
+		Database database = new Database();
+		try {
+			database.readData();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
