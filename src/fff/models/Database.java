@@ -147,7 +147,7 @@ public class Database {
 		for(Restaurant r:database.getRestaurants()){
 			System.out.println(r.getName()+" "+r.getID());
 			for(Food f:r.getMenu()){
-				System.out.println("\t"+f.getName());
+				System.out.println("\t"+String.format("%2.2f",f.getPrice())+"\t"+f.getName());
 			}
 			System.out.println("--------------------------------");
 		}
