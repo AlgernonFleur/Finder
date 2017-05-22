@@ -70,6 +70,10 @@ public class Database {
 		br.close();
 	}
 	
+	private void readRestaurants(){
+	
+	}
+	
 	public UserAccount getUser(String username){
 		for(UserAccount user:admins)
 			if(user.getUsername().equals(username))return user;
