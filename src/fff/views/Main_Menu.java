@@ -30,7 +30,7 @@ public class Main_Menu {
 	
 	private Node centerPiece;
 	
-	@FXML private void initialize(){
+	@FXML public void initialize(){
 		this.loginButton.setOnAction(e->openLoginDialog());
 		this.searchButton.setOnAction(e->searchButtonAction());
 		this.searchField.setPromptText("Search restaurants");
