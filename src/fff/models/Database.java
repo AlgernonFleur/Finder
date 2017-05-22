@@ -143,5 +143,14 @@ public class Database {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		for(Restaurant r:database.getRestaurants()){
+			System.out.println(r.getName()+" "+r.getID());
+			for(Food f:r.getMenu()){
+				System.out.println("\t"+f.getName());
+			}
+			System.out.println("--------------------------------");
+		}
+		
 	}
 }
