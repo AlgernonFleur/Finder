@@ -24,6 +24,8 @@ public class Restaurant {
 		this.ownerID = new SimpleStringProperty(ownerID);
 		this.ratings = FXCollections.observableArrayList();
 		this.menu = FXCollections.observableArrayList();
+		this.averageRatings = new SimpleFloatProperty(0);
+		this.averageRatings = new SimpleFloatProperty(0);
 	}
 	
 	public void addRating(Rating r){
@@ -34,6 +36,7 @@ public class Restaurant {
 		menu.add(f);
 	}
 	
+	//<editor-fold desc="--Variable Getters and Setters--">
 	public String getID() {
 		return ID.get();
 	}
@@ -92,5 +95,56 @@ public class Restaurant {
 	
 	public void setOwnerID(String ownerID) {
 		this.ownerID.set(ownerID);
+	}
+	
+	public float getAverageRatings() {
+		return averageRatings.get();
+	}
+	
+	public FloatProperty averageRatingsProperty() {
+		return averageRatings;
+	}
+	
+	public void setAverageRatings(float averageRatings) {
+		this.averageRatings.set(averageRatings);
+	}
+	
+	public float getPriceRange() {
+		return priceRange.get();
+	}
+	
+	public FloatProperty priceRangeProperty() {
+		return priceRange;
+	}
+	
+	public void setPriceRange(float priceRange) {
+		this.priceRange.set(priceRange);
+	}
+	//</editor-fold>
+	
+	public ObservableList<Rating> getRatings() {
+		return ratings;
+	}
+	
+	public ObservableList<Food> getMenu() {
+		return menu;
+	}
+	
+	public void calculateRatings(){
+		float avrgRate = 0;
+		for(Rating r:ratings){
+			avrgRate+=r.getRating();
+		}
+		avrgRate /= ratings.size();
+		this.averageRatings.set(avrgRate);
+	}
+	
+	public void calculateMenu(){
+		float avrgPrice = 0;
+		for(Food f:menu){
+			avrgPrice+=f.getPrice();
+		}
+		avrgPrice /= menu.size();
+		this.priceRange.set(avrgPrice);
 	}
 }

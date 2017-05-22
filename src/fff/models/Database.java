@@ -120,8 +120,6 @@ public class Database {
 		return null;
 	}
 	
-	
-	
 	public ObservableList<Admin> getAdmins() {
 		return admins;
 	}
@@ -132,6 +130,10 @@ public class Database {
 	
 	public ObservableList<Customer> getCustomers() {
 		return customers;
+	}
+	
+	public ObservableList<Restaurant> getRestaurants() {
+		return restaurants;
 	}
 	
 	public static void main(String[] args) {
