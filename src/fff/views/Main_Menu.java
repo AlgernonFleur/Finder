@@ -30,7 +30,6 @@ public class Main_Menu {
 	
 	private Node centerPiece;
 	
-	@SuppressWarnings("unused")
 	@FXML private void initialize(){
 		this.loginButton.setOnAction(e->openLoginDialog());
 		this.searchButton.setOnAction(e->searchButtonAction());

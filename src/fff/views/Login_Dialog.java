@@ -16,7 +16,6 @@ public class Login_Dialog {
 	@FXML private Button loginButton;
 	@FXML private Text loginFailState;
 	
-	@SuppressWarnings("unused")
 	@FXML private void initialize(){
 		usernameField.setOnKeyPressed(e-> {
 			if(e.getCode().getName().equals("Enter"))checkDetails();

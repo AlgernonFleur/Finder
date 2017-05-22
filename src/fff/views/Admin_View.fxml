@@ -18,13 +18,13 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="6.0" prefHeight="270.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="adminTableView" layoutX="6.0" prefHeight="270.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="ID" />
-                              <TableColumn prefWidth="75.0" text="Username" />
-                              <TableColumn prefWidth="75.0" text="Password" />
-                              <TableColumn prefWidth="75.0" text="Full Name" />
-                              <TableColumn prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="adminID" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="adminUserName" prefWidth="75.0" text="Username" />
+                              <TableColumn fx:id="adminPassword" prefWidth="75.0" text="Password" />
+                              <TableColumn fx:id="adminFullName" prefWidth="75.0" text="Full Name" />
+                              <TableColumn fx:id="adminEmail" prefWidth="75.0" text="Email" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -38,13 +38,13 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="6.0" prefHeight="270.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="customerTableView" layoutX="6.0" prefHeight="270.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="ID" />
-                              <TableColumn prefWidth="75.0" text="Username" />
-                              <TableColumn prefWidth="75.0" text="Password" />
-                              <TableColumn prefWidth="75.0" text="Full Name" />
-                              <TableColumn prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="customerID" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="customerUserName" prefWidth="75.0" text="Username" />
+                              <TableColumn fx:id="customerPassword" prefWidth="75.0" text="Password" />
+                              <TableColumn fx:id="customerFullName" prefWidth="75.0" text="Full Name" />
+                              <TableColumn fx:id="customerEmail" prefWidth="75.0" text="Email" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -58,13 +58,13 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="6.0" prefHeight="270.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="ownerTableView" layoutX="6.0" prefHeight="270.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="ID" />
-                              <TableColumn prefWidth="75.0" text="Username" />
-                              <TableColumn prefWidth="75.0" text="Password" />
-                              <TableColumn prefWidth="75.0" text="Full Name" />
-                              <TableColumn prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="ownerID" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="ownerUserName" prefWidth="75.0" text="Username" />
+                              <TableColumn fx:id="ownerPassword" prefWidth="75.0" text="Password" />
+                              <TableColumn fx:id="ownerFullName" prefWidth="75.0" text="Full Name" />
+                              <TableColumn fx:id="ownerEmail" prefWidth="75.0" text="Email" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
