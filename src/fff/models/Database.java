@@ -91,6 +91,16 @@ public class Database {
 			Restaurant restaurant = new Restaurant(id,name,post,cuisine,owner);
 			restaurants.add(restaurant);
 			
+			String menuPath = path+"/"+res+"/menu.csv";
+			InputStream menuData = Database.class.getResourceAsStream(menuPath);
+			BufferedReader menuBr = new BufferedReader(new InputStreamReader(menuData));
+			String men;
+			while((men=menuBr.readLine())!=null){
+				String[] line2 = men.split(",");
+				Food food = new Food(line2[0],Float.parseFloat(line2[1]));
+				restaurant.addFood(food);
+			}
+			
 			int ownerIndex = Integer.parseInt(owner.substring(1));
 			Owner o = owners.get(ownerIndex);
 			o.addRestaurant(restaurant);
