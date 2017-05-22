@@ -71,7 +71,7 @@ public class Database {
 		br.close();
 	}
 	
-	public void readRestaurants() throws IOException {
+	private void readRestaurants() throws IOException {
 		String path = "data/restaurants";
 		InputStream data = Database.class.getResourceAsStream(path);
 		BufferedReader br = new BufferedReader(new InputStreamReader(data));
