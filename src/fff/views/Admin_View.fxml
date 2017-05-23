@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fff.views.Admin_View">
    <center>
       <TabPane prefHeight="300.0" prefWidth="300.0" tabClosingPolicy="UNAVAILABLE">
@@ -25,26 +24,6 @@
                               <TableColumn fx:id="adminPassword" prefWidth="75.0" text="Password" />
                               <TableColumn fx:id="adminFullName" prefWidth="75.0" text="Full Name" />
                               <TableColumn fx:id="adminEmail" prefWidth="75.0" text="Email" />
-                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="Customers">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="customerTableView" layoutX="6.0" prefHeight="270.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn fx:id="customerID" prefWidth="75.0" text="ID" />
-                              <TableColumn fx:id="customerUserName" prefWidth="75.0" text="Username" />
-                              <TableColumn fx:id="customerPassword" prefWidth="75.0" text="Password" />
-                              <TableColumn fx:id="customerFullName" prefWidth="75.0" text="Full Name" />
-                              <TableColumn fx:id="customerEmail" prefWidth="75.0" text="Email" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -74,14 +53,56 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab text="Customers">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="customerTableView" layoutX="6.0" prefHeight="270.0" prefWidth="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columns>
+                              <TableColumn fx:id="customerID" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="customerUserName" prefWidth="75.0" text="Username" />
+                              <TableColumn fx:id="customerPassword" prefWidth="75.0" text="Password" />
+                              <TableColumn fx:id="customerFullName" prefWidth="75.0" text="Full Name" />
+                              <TableColumn fx:id="customerEmail" prefWidth="75.0" text="Email" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab text="Restaurants">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="50.0" layoutY="36.0" prefHeight="271.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="restaurantTableView" layoutX="50.0" layoutY="36.0" prefHeight="271.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="restaurantID" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="restaurantName" prefWidth="75.0" text="Name" />
+                              <TableColumn fx:id="restaurantPostcode" prefWidth="75.0" text="Postcode" />
+                              <TableColumn fx:id="restaurantCuisine" prefWidth="75.0" text="Cuisine" />
+                              <TableColumn fx:id="restaurantOwner" prefWidth="75.0" text="Owner" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Ratings">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="ratingTableView" layoutX="50.0" layoutY="36.0" prefHeight="271.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="ratingID" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="ratingResID" prefWidth="75.0" text="resID" />
+                              <TableColumn fx:id="ratingCusID" prefWidth="75.0" text="cusID" />
+                              <TableColumn fx:id="ratingValue" prefWidth="75.0" text="Value" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

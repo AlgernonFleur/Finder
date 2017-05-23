@@ -18,6 +18,18 @@ public class Rating {
 		this.rating = new SimpleIntegerProperty(rating);
 	}
 	
+	public String getRatingID() {
+		return ratingID.get();
+	}
+	
+	public StringProperty ratingIDProperty() {
+		return ratingID;
+	}
+	
+	public void setRatingID(String ratingID) {
+		this.ratingID.set(ratingID);
+	}
+	
 	public String getRestaurantID() {
 		return restaurantID.get();
 	}

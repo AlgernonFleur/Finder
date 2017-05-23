@@ -1,6 +1,5 @@
 package fff.models;
 
-import com.sun.org.apache.xpath.internal.axes.OneStepIterator;
 import fff.models.users.Admin;
 import fff.models.users.Customer;
 import fff.models.users.Owner;
@@ -34,6 +33,7 @@ public class Database {
 		readUsers("owner");
 		readUsers("customer");
 		readRestaurants();
+		readRatings();
 	}
 	
 	private void readUsers(String type) throws IOException {
@@ -173,24 +173,5 @@ public class Database {
 	
 	public ObservableList<Rating> getRatings() {
 		return ratings;
-	}
-	
-	public static void main(String[] args) {
-		Database database = new Database();
-		try {
-			database.readData();
-			database.readRatings();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		/*
-		for(Restaurant r:database.getRestaurants()){
-			System.out.println(r.getName()+" "+r.getID());
-			for(Food f:r.getMenu()){
-				System.out.println("\t"+String.format("%2.2f",f.getPrice())+"\t"+f.getName());
-			}
-			System.out.println("--------------------------------");
-		}
-		*/
 	}
 }
