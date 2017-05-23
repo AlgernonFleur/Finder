@@ -104,17 +104,17 @@ public class Admin_View extends _View_{
 	private void showAdmin(){
 		if(adminTableView.getSelectionModel().getSelectedIndex()>=0){
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(App.class.getResource("views/Admin_Acc.fxml"));
+			loader.setLocation(App.class.getResource("views/User_Acc.fxml"));
 			Node prevPage = getMain().getCenterPiece();
 			try {
 				getMain().changeCenter(loader.load());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			Admin_Acc view = loader.getController();
+			User_Acc view = loader.getController();
 			view.setMain(getMain());
 			view.setPreviousPage(prevPage);
-			view.setAdmin(adminTableView.getSelectionModel().getSelectedItem());
+			view.setUser(adminTableView.getSelectionModel().getSelectedItem());
 		}
 	}
 }
