@@ -1,9 +1,7 @@
 package fff.models;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import fff.models.users.Customer;
+import javafx.beans.property.*;
 
 public class Rating {
 	private StringProperty ratingID;
@@ -11,11 +9,17 @@ public class Rating {
 	private StringProperty customerID;
 	private IntegerProperty rating;
 	
+	private ObjectProperty<Restaurant> restaurantObjectProperty;
+	private ObjectProperty<Customer> customerObjectProperty;
+	
 	public Rating(String ratingID, String restaurantID, String customerID, int rating) {
 		this.ratingID = new SimpleStringProperty(ratingID);
 		this.restaurantID = new SimpleStringProperty(restaurantID);
 		this.customerID = new SimpleStringProperty(customerID);
 		this.rating = new SimpleIntegerProperty(rating);
+		
+		this.restaurantObjectProperty = new SimpleObjectProperty<>();
+		this.customerObjectProperty = new SimpleObjectProperty<>();
 	}
 	
 	public String getRatingID() {
@@ -64,5 +68,29 @@ public class Rating {
 	
 	public void setRating(int rating) {
 		this.rating.set(rating);
+	}
+	
+	public Restaurant getRestaurantObjectProperty() {
+		return restaurantObjectProperty.get();
+	}
+	
+	public ObjectProperty<Restaurant> restaurantObjectPropertyProperty() {
+		return restaurantObjectProperty;
+	}
+	
+	public void setRestaurantObjectProperty(Restaurant restaurantObjectProperty) {
+		this.restaurantObjectProperty.set(restaurantObjectProperty);
+	}
+	
+	public Customer getCustomerObjectProperty() {
+		return customerObjectProperty.get();
+	}
+	
+	public ObjectProperty<Customer> customerObjectPropertyProperty() {
+		return customerObjectProperty;
+	}
+	
+	public void setCustomerObjectProperty(Customer customerObjectProperty) {
+		this.customerObjectProperty.set(customerObjectProperty);
 	}
 }

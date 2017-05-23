@@ -124,8 +124,13 @@ public class Database {
 			Rating rating = new Rating(id,resID,cusID,value);
 			ratings.add(rating);
 			
-			findRestaurant(resID).addRating(rating);
-			findCustomer(cusID).addRating(rating);
+			Restaurant r = findRestaurant(resID);
+			r.addRating(rating);
+			Customer c = findCustomer(cusID);
+			c.addRating(rating);
+			
+			rating.setRestaurantObjectProperty(r);
+			rating.setCustomerObjectProperty(c);
 		}
 		reader.close();
 	}
