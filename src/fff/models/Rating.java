@@ -12,7 +12,7 @@ public class Rating {
 	private IntegerProperty rating;
 	
 	public Rating(String ratingID, String restaurantID, String customerID, int rating) {
-		this.ratingID = new SimpleStringProperty(restaurantID);
+		this.ratingID = new SimpleStringProperty(ratingID);
 		this.restaurantID = new SimpleStringProperty(restaurantID);
 		this.customerID = new SimpleStringProperty(customerID);
 		this.rating = new SimpleIntegerProperty(rating);
