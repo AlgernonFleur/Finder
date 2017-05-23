@@ -30,7 +30,7 @@ public class Login_Dialog {
 		String username = usernameField.getText();
 		String password = passwordField.getText();
 		
-		UserAccount user = _Overview_.getDatabase().getUser(username);
+		UserAccount user = _Overview_.getDatabase().findUser(username);
 		if(user!=null)
 			if(user.getPassword().equals(password)) {
 				_Overview_.setUserAccount(user);
