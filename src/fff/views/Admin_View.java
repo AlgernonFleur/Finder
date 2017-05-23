@@ -1,15 +1,21 @@
 package fff.views;
 
+import fff.App;
 import fff.models.Rating;
 import fff.models.Restaurant;
 import fff.models.users.Admin;
 import fff.models.users.Customer;
 import fff.models.users.Owner;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class Admin_View {
+import java.io.IOException;
+
+public class Admin_View extends _View_{
 	
 	//<editor-fold desc="Table Variables">
 	@FXML private TableView<Admin> adminTableView;
@@ -46,6 +52,9 @@ public class Admin_View {
 	@FXML private TableColumn<Rating,String> ratingCusID;
 	@FXML private TableColumn<Rating,Integer> ratingValue;
 	//</editor-fold>
+	
+	@FXML private Button viewAdmin;
+	
 	
 	@FXML public void initialize() {
 		//<editor-fold desc="Table Variable Initializing">
@@ -84,6 +93,24 @@ public class Admin_View {
 		ratingValue.setCellValueFactory(data->data.getValue().ratingProperty().asObject());
 		//</editor-fold>
 		
+		this.viewAdmin.setOnAction(e->showAdmin());
+	}
+	
+	private void showAdmin(){
+		if(adminTableView.getSelectionModel().getSelectedIndex()>=0){
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("views/Admin_Acc.fxml"));
+			Node prevPage = getMain().getCenterPiece();
+			try {
+				getMain().changeCenter(loader.load());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Admin_Acc view = loader.getController();
+			view.setMain(getMain());
+			view.setPreviousPage(prevPage);
+			view.setAdmin(adminTableView.getSelectionModel().getSelectedItem());
+		}
 	}
 }
 

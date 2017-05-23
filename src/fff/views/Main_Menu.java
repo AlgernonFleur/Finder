@@ -42,12 +42,25 @@ public class Main_Menu {
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(App.class.getResource("views/Admin_View.fxml"));
+		
 		try {
 			this.centerPiece = loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		_View_ view = loader.getController();
+		view.setMain(this);
+		view.setPreviousPage(null);
 		this.layout.setCenter(centerPiece);
+	}
+	
+	public void changeCenter(Node node){
+		this.centerPiece = node;
+		this.layout.setCenter(node);
+	}
+	
+	public Node getCenterPiece() {
+		return centerPiece;
 	}
 	
 	private void searchButtonAction(){
