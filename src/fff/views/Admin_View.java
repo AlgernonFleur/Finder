@@ -6,12 +6,14 @@ import fff.models.Restaurant;
 import fff.models.users.Admin;
 import fff.models.users.Customer;
 import fff.models.users.Owner;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -94,6 +96,9 @@ public class Admin_View extends _View_{
 		//</editor-fold>
 		
 		this.viewAdmin.setOnAction(e->showAdmin());
+		this.adminTableView.setOnMousePressed(e -> {
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2) showAdmin();
+		});
 	}
 	
 	private void showAdmin(){
