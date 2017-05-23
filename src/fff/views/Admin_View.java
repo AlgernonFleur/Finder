@@ -6,14 +6,12 @@ import fff.models.Restaurant;
 import fff.models.users.Admin;
 import fff.models.users.Customer;
 import fff.models.users.Owner;
-import javafx.event.EventHandler;
+import fff.models.users.UserAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -55,9 +53,6 @@ public class Admin_View extends _View_{
 	@FXML private TableColumn<Rating,Integer> ratingValue;
 	//</editor-fold>
 	
-	@FXML private Button viewAdmin;
-	
-	
 	@FXML public void initialize() {
 		//<editor-fold desc="Table Variable Initializing">
 		adminTableView.setItems(_Overview_.getDatabase().getAdmins());
@@ -95,14 +90,22 @@ public class Admin_View extends _View_{
 		ratingValue.setCellValueFactory(data->data.getValue().ratingProperty().asObject());
 		//</editor-fold>
 		
-		this.viewAdmin.setOnAction(e->showAdmin());
 		this.adminTableView.setOnMousePressed(e -> {
-			if (e.isPrimaryButtonDown() && e.getClickCount()==2) showAdmin();
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
+				showUser(adminTableView.getSelectionModel().getSelectedItem());
+		});
+		this.ownerTableView.setOnMousePressed(e -> {
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
+				showUser(ownerTableView.getSelectionModel().getSelectedItem());
+		});
+		this.customerTableView.setOnMousePressed(e -> {
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
+				showUser(customerTableView.getSelectionModel().getSelectedItem());
 		});
 	}
 	
-	private void showAdmin(){
-		if(adminTableView.getSelectionModel().getSelectedIndex()>=0){
+	private void showUser(UserAccount user){
+		if(user!=null){
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(App.class.getResource("views/User_Acc.fxml"));
 			Node prevPage = getMain().getCenterPiece();
@@ -114,7 +117,7 @@ public class Admin_View extends _View_{
 			User_Acc view = loader.getController();
 			view.setMain(getMain());
 			view.setPreviousPage(prevPage);
-			view.setUser(adminTableView.getSelectionModel().getSelectedItem());
+			view.setUser(user);
 		}
 	}
 }
