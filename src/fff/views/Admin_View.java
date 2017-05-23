@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 
 public class Admin_View {
 	
+	//<editor-fold desc="Table Variables">
 	@FXML private TableView<Admin> adminTableView;
 	@FXML private TableColumn<Admin,String> adminID;
 	@FXML private TableColumn<Admin,String> adminUserName;
@@ -44,8 +45,10 @@ public class Admin_View {
 	@FXML private TableColumn<Rating,String> ratingResID;
 	@FXML private TableColumn<Rating,String> ratingCusID;
 	@FXML private TableColumn<Rating,Integer> ratingValue;
+	//</editor-fold>
 	
 	@FXML public void initialize() {
+		//<editor-fold desc="Table Variable Initializing">
 		adminTableView.setItems(_Overview_.getDatabase().getAdmins());
 		adminID.setCellValueFactory(data->data.getValue().IDProperty());
 		adminUserName.setCellValueFactory(data->data.getValue().usernameProperty());
@@ -79,6 +82,8 @@ public class Admin_View {
 		ratingResID.setCellValueFactory(data->data.getValue().restaurantIDProperty());
 		ratingCusID.setCellValueFactory(data->data.getValue().customerIDProperty());
 		ratingValue.setCellValueFactory(data->data.getValue().ratingProperty().asObject());
+		//</editor-fold>
+		
 	}
 }
 
