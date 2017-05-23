@@ -1,5 +1,6 @@
 package fff.models;
 
+import com.sun.org.apache.xpath.internal.axes.OneStepIterator;
 import fff.models.users.Admin;
 import fff.models.users.Customer;
 import fff.models.users.Owner;
@@ -18,12 +19,14 @@ public class Database {
 	private ObservableList<Owner> owners;
 	private ObservableList<Customer> customers;
 	private ObservableList<Restaurant> restaurants;
+	private ObservableList<Rating> ratings;
 	
 	public Database(){
 		this.admins = FXCollections.observableArrayList();
 		this.owners = FXCollections.observableArrayList();
 		this.customers = FXCollections.observableArrayList();
 		this.restaurants = FXCollections.observableArrayList();
+		this.ratings = FXCollections.observableArrayList();
 	}
 	
 	public void readData() throws IOException {
@@ -100,23 +103,55 @@ public class Database {
 				Food food = new Food(line2[0],Float.parseFloat(line2[1]));
 				restaurant.addFood(food);
 			}
-			
-			int ownerIndex = Integer.parseInt(owner.substring(1));
-			Owner o = owners.get(ownerIndex);
-			o.addRestaurant(restaurant);
+			findOwner(owner).addRestaurant(restaurant);
 			
 			resBr.close();
 		}
 		br.close();
 	}
 	
-	public UserAccount getUser(String username){
+	private void readRatings() throws IOException{
+		String path = "data/ratings.csv";
+		InputStream data = Database.class.getResourceAsStream(path);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(data));
+		String ratingLine;
+		while((ratingLine=reader.readLine())!=null){
+			String[] line = ratingLine.split(",");
+			String id = line[0];
+			String resID = line[1];
+			String cusID = line[2];
+			int value = Integer.parseInt(line[3]);
+			Rating rating = new Rating(id,resID,cusID,value);
+			ratings.add(rating);
+			
+			findRestaurant(resID).addRating(rating);
+			findCustomer(cusID).addRating(rating);
+		}
+		reader.close();
+	}
+	
+	public UserAccount findUser(String username){
 		for(UserAccount user:admins)
 			if(user.getUsername().equals(username))return user;
 		for(UserAccount user:owners)
 			if(user.getUsername().equals(username))return user;
 		for(UserAccount user:customers)
 			if(user.getUsername().equals(username))return user;
+		return null;
+	}
+	
+	public Owner findOwner(String ID){
+		for(Owner o:owners) if(o.getID().equals(ID)) return o;
+		return null;
+	}
+	
+	public Restaurant findRestaurant(String ID){
+		for(Restaurant r:restaurants) if(r.getID().equals(ID)) return r;
+		return null;
+	}
+	
+	public Customer findCustomer(String ID){
+		for(Customer c:customers) if (c.getID().equals(ID)) return c;
 		return null;
 	}
 	
@@ -136,14 +171,19 @@ public class Database {
 		return restaurants;
 	}
 	
+	public ObservableList<Rating> getRatings() {
+		return ratings;
+	}
+	
 	public static void main(String[] args) {
 		Database database = new Database();
 		try {
 			database.readData();
+			database.readRatings();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		/*
 		for(Restaurant r:database.getRestaurants()){
 			System.out.println(r.getName()+" "+r.getID());
 			for(Food f:r.getMenu()){
@@ -151,6 +191,6 @@ public class Database {
 			}
 			System.out.println("--------------------------------");
 		}
-		
+		*/
 	}
 }

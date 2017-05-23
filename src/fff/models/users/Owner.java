@@ -16,4 +16,8 @@ public class Owner extends UserAccount {
 	public void addRestaurant(Restaurant r){
 		ownedRestaurants.add(r);
 	}
+	
+	public ObservableList<Restaurant> getOwnedRestaurants() {
+		return ownedRestaurants;
+	}
 }

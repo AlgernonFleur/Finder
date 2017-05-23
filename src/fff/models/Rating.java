@@ -6,11 +6,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Rating {
+	private StringProperty ratingID;
 	private StringProperty restaurantID;
 	private StringProperty customerID;
 	private IntegerProperty rating;
 	
-	public Rating(String restaurantID, String customerID, int rating) {
+	public Rating(String ratingID, String restaurantID, String customerID, int rating) {
+		this.ratingID = new SimpleStringProperty(restaurantID);
 		this.restaurantID = new SimpleStringProperty(restaurantID);
 		this.customerID = new SimpleStringProperty(customerID);
 		this.rating = new SimpleIntegerProperty(rating);
