@@ -20,8 +20,7 @@ public final class _Overview_ {
 	}
 	
 	public static void setDatabase(Database database) {
-		if (_Overview_.database == null)
-			_Overview_.database = database;
+		if (_Overview_.database == null) _Overview_.database = database;
 		else _Overview_.throwError();
 	}
 	
@@ -38,8 +37,7 @@ public final class _Overview_ {
 	}
 	
 	public static void setStage(Stage stage) {
-		if (_Overview_.stage == null)
-			_Overview_.stage = stage;
+		if (_Overview_.stage == null) _Overview_.stage = stage;
 		else _Overview_.throwError();
 	}
 	
