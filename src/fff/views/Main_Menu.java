@@ -41,7 +41,7 @@ public class Main_Menu {
 		this.searchCombo.getSelectionModel().selectFirst();
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("views/Admin_View.fxml"));
+		loader.setLocation(App.class.getResource("views/Default_View.fxml"));
 		
 		try {
 			this.centerPiece = loader.load();

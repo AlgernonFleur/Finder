@@ -1,5 +1,47 @@
 package fff.views;
 
-public class Default_View {
+import fff.models.Restaurant;
+import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
+import java.util.Random;
+
+public class Default_View extends _View_{
+	
+	@FXML private Pane featuredRestaurantPane;
+	@FXML private Text featuredRestaurantName;
+	@FXML private Text featuredRestaurantCuisine;
+	@FXML private Text featuredRestaurantRating;
+	
+	@FXML private Pane searchRestaurant;
+	@FXML private Pane feelingLucky;
+	@FXML private Pane top25;
+	@FXML private Pane favourites;
+	@FXML private Pane reviews;
+	
+	private Restaurant featuredRestaurant;
+	private Restaurant luckyRestaurant;
+	
+	@FXML public void initialize(){
+		Random random = new Random(System.currentTimeMillis());
+		int size = _Overview_.getDatabase().getRestaurants().size();
+		
+		this.featuredRestaurant =
+			_Overview_.getDatabase().getRestaurants().get(random.nextInt(size));
+		this.featuredRestaurantName.setText(featuredRestaurant.getName());
+		this.featuredRestaurantCuisine.setText(featuredRestaurant.getCuisine());
+		this.featuredRestaurantRating.setText(
+			String.valueOf(
+				(int)featuredRestaurant.getAverageRatings()));
+		
+		this.luckyRestaurant =
+			_Overview_.getDatabase().getRestaurants().get(random.nextInt(size));
+		
+		
+	}
+	
+	private void goToSearchPage(){
+	
+	}
 }
