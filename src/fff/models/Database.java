@@ -34,6 +34,7 @@ public class Database {
 		readUsers("customer");
 		readRestaurants();
 		readRatings();
+		calculateAverageRatingsAndMenu();
 	}
 	
 	private void readUsers(String type) throws IOException {
@@ -103,7 +104,9 @@ public class Database {
 				Food food = new Food(line2[0],Float.parseFloat(line2[1]));
 				restaurant.addFood(food);
 			}
-			findOwner(owner).addRestaurant(restaurant);
+			Owner o = findOwner(owner);
+			o.addRestaurant(restaurant);
+			restaurant.setOwnerObjectProperty(o);
 			
 			resBr.close();
 		}
@@ -133,6 +136,13 @@ public class Database {
 			rating.setCustomerObjectProperty(c);
 		}
 		reader.close();
+	}
+	
+	private void calculateAverageRatingsAndMenu(){
+		for(Restaurant r:restaurants){
+			r.calculateRatings();
+			r.calculateMenu();
+		}
 	}
 	
 	public UserAccount findUser(String username){

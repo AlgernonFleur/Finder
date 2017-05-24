@@ -1,5 +1,6 @@
 package fff.models;
 
+import fff.models.users.Owner;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ public class Restaurant {
 	private StringProperty ownerID;
 	private ObservableList<Rating> ratings;
 	private ObservableList<Food> menu;
+	private ObjectProperty<Owner> ownerObjectProperty;
 	
 	private FloatProperty averageRatings;
 	private FloatProperty priceRange;
@@ -24,8 +26,9 @@ public class Restaurant {
 		this.ownerID = new SimpleStringProperty(ownerID);
 		this.ratings = FXCollections.observableArrayList();
 		this.menu = FXCollections.observableArrayList();
+		this.ownerObjectProperty = new SimpleObjectProperty<>();
 		this.averageRatings = new SimpleFloatProperty(0);
-		this.averageRatings = new SimpleFloatProperty(0);
+		this.priceRange = new SimpleFloatProperty(0);
 	}
 	
 	public void addRating(Rating r){
@@ -97,6 +100,18 @@ public class Restaurant {
 		this.ownerID.set(ownerID);
 	}
 	
+	public Owner getOwnerObjectProperty() {
+		return ownerObjectProperty.get();
+	}
+	
+	public ObjectProperty<Owner> ownerObjectPropertyProperty() {
+		return ownerObjectProperty;
+	}
+	
+	public void setOwnerObjectProperty(Owner ownerObjectProperty) {
+		this.ownerObjectProperty.set(ownerObjectProperty);
+	}
+	
 	public float getAverageRatings() {
 		return averageRatings.get();
 	}
@@ -105,20 +120,12 @@ public class Restaurant {
 		return averageRatings;
 	}
 	
-	public void setAverageRatings(float averageRatings) {
-		this.averageRatings.set(averageRatings);
-	}
-	
 	public float getPriceRange() {
 		return priceRange.get();
 	}
 	
 	public FloatProperty priceRangeProperty() {
 		return priceRange;
-	}
-	
-	public void setPriceRange(float priceRange) {
-		this.priceRange.set(priceRange);
 	}
 	//</editor-fold>
 	
@@ -131,20 +138,20 @@ public class Restaurant {
 	}
 	
 	public void calculateRatings(){
-		float avrgRate = 0;
+		float averageRate = 0;
 		for(Rating r:ratings){
-			avrgRate+=r.getRating();
+			averageRate+=r.getRating();
 		}
-		avrgRate /= ratings.size();
-		this.averageRatings.set(avrgRate);
+		averageRate /= ratings.size();
+		this.averageRatings.set(averageRate);
 	}
 	
 	public void calculateMenu(){
-		float avrgPrice = 0;
+		float averagePrice = 0;
 		for(Food f:menu){
-			avrgPrice+=f.getPrice();
+			averagePrice+=f.getPrice();
 		}
-		avrgPrice /= menu.size();
-		this.priceRange.set(avrgPrice);
+		averagePrice /= menu.size();
+		this.priceRange.set(averagePrice);
 	}
 }
