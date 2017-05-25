@@ -12,11 +12,10 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="392.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fff.views.User_Acc">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fff.views.User_Acc">
     <bottom>
         <ToolBar BorderPane.alignment="CENTER">
             <items>
@@ -25,18 +24,33 @@
         </ToolBar>
     </bottom>
     <top>
-        <StackPane BorderPane.alignment="CENTER">
-            <children>
-                <Text fx:id="detailsTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Details" underline="true">
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+                <Text fx:id="detailsTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Details" underline="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Text>
-            </children>
-            <padding>
-                <Insets top="50.0" />
-            </padding>
-        </StackPane>
+            <Text fx:id="type" strokeType="OUTSIDE" strokeWidth="0.0" text="USER">
+               <GridPane.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="ID" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </GridPane.margin>
+            </Text>
+         </children>
+      </GridPane>
     </top>
     <center>
         <GridPane BorderPane.alignment="CENTER">
@@ -57,17 +71,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" GridPane.rowIndex="3" />
-                        <Text fx:id="ID" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
-                        <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Text fx:id="fullName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Text fx:id="email" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" GridPane.rowIndex="2" />
+                        <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+                        <Text fx:id="fullName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Text fx:id="email" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                     </children>
                     <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -79,19 +90,26 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
-                                        <TableView fx:id="restaurantTableView" maxHeight="1.7976931348623157E308" prefHeight="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <columns>
-                                                <TableColumn fx:id="restaurantName" prefWidth="75.0" text="Name" />
-                                                <TableColumn fx:id="restaurantPostcode" prefWidth="75.0" text="Postcode" />
-                                                <TableColumn fx:id="restaurantCuisine" prefWidth="75.0" text="Cuisine" />
-                                                <TableColumn fx:id="restaurantOwner" prefWidth="75.0" text="Owner" />
-                                    <TableColumn fx:id="restaurantRating" prefWidth="75.0" text="Avrg. Rating" />
-                                    <TableColumn fx:id="restaurantPrice" prefWidth="75.0" text="Avrg. Price" />
-                                            </columns>
-                                            <columnResizePolicy>
-                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                            </columnResizePolicy>
-                                        </TableView>
+                              <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <center>
+                                              <TableView fx:id="restaurantTableView" maxHeight="1.7976931348623157E308" prefHeight="500.0">
+                                                  <columns>
+                                                      <TableColumn fx:id="restaurantName" prefWidth="75.0" text="Name" />
+                                                      <TableColumn fx:id="restaurantPostcode" prefWidth="75.0" text="Postcode" />
+                                                      <TableColumn fx:id="restaurantCuisine" prefWidth="75.0" text="Cuisine" />
+                                                      <TableColumn fx:id="restaurantOwner" prefWidth="75.0" text="Owner" />
+                                          <TableColumn fx:id="restaurantRating" prefWidth="75.0" text="Avrg. Rating" />
+                                          <TableColumn fx:id="restaurantPrice" prefWidth="75.0" text="Avrg. Price" />
+                                                  </columns>
+                                                  <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                  </columnResizePolicy>
+                                              </TableView>
+                                 </center>
+                                 <bottom>
+                                    <Button fx:id="viewRestaurant1" mnemonicParsing="false" text="View Restaurant" BorderPane.alignment="CENTER" />
+                                 </bottom>
+                              </BorderPane>
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -100,15 +118,22 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
-                                        <TableView fx:id="ratingTableView" maxHeight="1.7976931348623157E308" prefHeight="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <columns>
-                                                <TableColumn fx:id="ratingResName" prefWidth="75.0" text="Restaurant" />
-                                                <TableColumn fx:id="ratingValue" prefWidth="75.0" text="Given Rating" />
-                                            </columns>
-                                            <columnResizePolicy>
-                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                            </columnResizePolicy>
-                                        </TableView>
+                              <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <center>
+                                              <TableView fx:id="ratingTableView" maxHeight="1.7976931348623157E308" prefHeight="500.0">
+                                                  <columns>
+                                                      <TableColumn fx:id="ratingResName" prefWidth="75.0" text="Restaurant" />
+                                                      <TableColumn fx:id="ratingValue" prefWidth="75.0" text="Given Rating" />
+                                                  </columns>
+                                                  <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                  </columnResizePolicy>
+                                              </TableView>
+                                 </center>
+                                 <bottom>
+                                    <Button fx:id="viewRestaurant2" mnemonicParsing="false" text="View Restaurant" BorderPane.alignment="CENTER" />
+                                 </bottom>
+                              </BorderPane>
                                     </children>
                                 </AnchorPane>
                             </content>
