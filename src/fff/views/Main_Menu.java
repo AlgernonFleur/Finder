@@ -25,6 +25,7 @@ public class Main_Menu {
 	@FXML private Button accountButton;
 	@FXML private Button loginButton;
 	@FXML private Button searchButton;
+	@FXML private Button homeButton;
 	@FXML private TextField searchField;
 	@FXML private ComboBox<String> searchCombo;
 	
@@ -34,6 +35,7 @@ public class Main_Menu {
 		this.loginButton.setOnAction(e->openLoginDialog());
 		this.searchButton.setOnAction(e->searchButtonAction());
 		this.searchField.setPromptText("Search restaurants");
+		this.homeButton.setOnAction(e->goHome());
 		
 		ObservableList<String> options = FXCollections.observableArrayList(
 			"Name","Postcode","Cuisine","Ratings","Price Range");
@@ -61,6 +63,21 @@ public class Main_Menu {
 	
 	public Node getCenterPiece() {
 		return centerPiece;
+	}
+	
+	private void goHome(){
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("views/Default_View.fxml"));
+		
+		try {
+			this.centerPiece = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		_View_ view = loader.getController();
+		view.setMain(this);
+		view.setPreviousPage(null);
+		this.layout.setCenter(centerPiece);
 	}
 	
 	private void searchButtonAction(){
