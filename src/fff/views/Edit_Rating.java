@@ -18,12 +18,14 @@ public class Edit_Rating {
 	@FXML private Button cancelButton;
 	
 	private Rating rating;
+	private boolean ratingApproved;
 	
 	@FXML public void initialize(){
 		ObservableList<Integer> ratings = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10);
 		this.ratingsChoices.setItems(ratings);
 		this.okButton.setOnAction(e->ok());
 		this.cancelButton.setOnAction(e->cancel());
+		ratingApproved = false;
 	}
 	
 	public void setRating(Rating rating) {
@@ -35,11 +37,16 @@ public class Edit_Rating {
 	
 	private void ok(){
 		this.rating.setRating(ratingsChoices.getValue());
+		ratingApproved=true;
 		cancel();
 	}
 	
 	private void cancel(){
 		Stage stage = (Stage) cancelButton.getScene().getWindow();
 		stage.close();
+	}
+	
+	public boolean isRatingApproved() {
+		return ratingApproved;
 	}
 }

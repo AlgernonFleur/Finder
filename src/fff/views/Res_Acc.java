@@ -8,10 +8,13 @@ import fff.models.users.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -35,6 +38,7 @@ public class Res_Acc extends _View_ {
 	
 	@FXML private Button backButton;
 	@FXML private Button ownerButton;
+	@FXML private Button ratingButton;
 	
 	private Restaurant restaurant;
 	
@@ -102,5 +106,80 @@ public class Res_Acc extends _View_ {
 		this.ratings.setItems(this.restaurant.getRatings());
 		this.ratingsCustomer.setCellValueFactory(data->data.getValue().getCustomerObjectProperty().fullNameProperty());
 		this.ratingsValue.setCellValueFactory(data->data.getValue().ratingProperty().asString());
+		
+		if(_Overview_.getUserAccount()==null)this.ratingButton.setVisible(false);
+		else if(_Overview_.getUserAccount().getClass().getSimpleName().equals("Customer")){
+			boolean customerAlreadyRated = false;
+			for(Rating r:restaurant.getRatings()){
+				if (r.getCustomerObjectProperty().equals(_Overview_.getUserAccount())){
+					this.ratingButton.setText("Edit Rating");
+					this.ratingButton.setOnAction(e->editRating(r));
+					customerAlreadyRated = true;
+				}
+			}
+			if(!customerAlreadyRated){
+				this.ratingButton.setText("Give Rating");
+				this.ratingButton.setOnAction(e->customerNewRating());
+			}
+		}
+	}
+	
+	private void editRating(Rating r){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+				App.class.getResource("views/Edit_Rating.fxml"));
+			
+			Stage loginDialog = new Stage();
+			loginDialog.setScene(new Scene(loader.load()));
+			
+			Edit_Rating dialog = loader.getController();
+			dialog.setRating(r);
+			
+			loginDialog.setTitle("Change Details");
+			loginDialog.initModality(Modality.WINDOW_MODAL);
+			loginDialog.initOwner(_Overview_.getStage());
+			loginDialog.setResizable(false);
+			loginDialog.sizeToScene();
+			loginDialog.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void customerNewRating(){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+				App.class.getResource("views/Edit_Rating.fxml"));
+			
+			Stage loginDialog = new Stage();
+			loginDialog.setScene(new Scene(loader.load()));
+			
+			String newRatingID = ""+
+				String.format("%05d",_Overview_.getDatabase().getRatings().size());
+			Rating r = new Rating(newRatingID, restaurant.getID(), _Overview_.getUserAccount().getID(), 1);
+			r.setRestaurantObjectProperty(restaurant);
+			r.setCustomerObjectProperty((Customer) _Overview_.getUserAccount());
+			
+			Edit_Rating dialog = loader.getController();
+			dialog.setRating(r);
+			
+			loginDialog.setTitle("Change Details");
+			loginDialog.initModality(Modality.WINDOW_MODAL);
+			loginDialog.initOwner(_Overview_.getStage());
+			loginDialog.setResizable(false);
+			loginDialog.sizeToScene();
+			loginDialog.showAndWait();
+			
+			if(dialog.isRatingApproved()){
+				_Overview_.getDatabase().getRatings().add(r);
+				restaurant.getRatings().add(r);
+				this.ratingButton.setText("Edit Rating");
+				this.ratingButton.setOnAction(e->editRating(r));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
