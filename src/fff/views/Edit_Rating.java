@@ -4,11 +4,10 @@ import fff.models.Rating;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.util.Optional;
 
 public class Edit_Rating {
 	
@@ -37,21 +36,33 @@ public class Edit_Rating {
 	}
 	
 	private void ok(){
-		this.rating.setRating(ratingsChoices.getValue());
-		ratingApproved=true;
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setTitle("Rating Approved");
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Approve rating?");
 		alert.setHeaderText(null);
-		alert.setContentText("You have rated "+ratingsChoices.getValue()+"for the "+resName+"!");
+		alert.setContentText("You have rated "+ratingsChoices.getValue()+" for the "+
+			resName.getText()+"!\n"
+			+"Are you ok with this?");
 		
-		alert.showAndWait();
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			this.rating.setRating(ratingsChoices.getValue());
+			ratingApproved=true;
+		}
 		Stage stage = (Stage) cancelButton.getScene().getWindow();
 		stage.close();
 	}
 	
 	private void cancel(){
-		Stage stage = (Stage) cancelButton.getScene().getWindow();
-		stage.close();
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Quit rating?");
+		alert.setHeaderText(null);
+		alert.setContentText("Do you wish to cancel your rating?");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			Stage stage = (Stage) cancelButton.getScene().getWindow();
+			stage.close();
+		}
 	}
 	
 	public boolean isRatingApproved() {
