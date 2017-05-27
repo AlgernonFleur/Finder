@@ -151,6 +151,10 @@ public class User_Acc extends _View_ {
 			loginDialog.setResizable(false);
 			loginDialog.sizeToScene();
 			loginDialog.showAndWait();
+			
+			this.username.setText(this.user.getUsername());
+			this.fullName.setText(this.user.getFullName());
+			this.email.setText(this.user.getEmail());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
