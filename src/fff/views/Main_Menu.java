@@ -33,7 +33,7 @@ public class Main_Menu {
 		this.homeButton.setOnAction(e->goHome());
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("views/Admin_View.fxml"));
+		loader.setLocation(App.class.getResource("views/Default_View.fxml"));
 		try {
 			this.centerPiece = loader.load();
 		} catch (IOException e) {
