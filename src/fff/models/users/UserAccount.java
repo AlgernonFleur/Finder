@@ -14,7 +14,6 @@ public abstract class UserAccount {
 	private StringProperty fullName;
 	private StringProperty email;
 	
-	private ObservableList<Restaurant> favourites;
 	
 	public UserAccount(String ID,String username,String password, String fullName, String email){
 		this.ID = new SimpleStringProperty(ID);
@@ -22,7 +21,6 @@ public abstract class UserAccount {
 		this.password = new SimpleStringProperty(password);
 		this.fullName = new SimpleStringProperty(fullName);
 		this.email = new SimpleStringProperty(email);
-		this.favourites = FXCollections.observableArrayList();
 	}
 	
 	public String getID() {
