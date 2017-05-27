@@ -4,6 +4,7 @@ import fff.models.Rating;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -38,6 +39,12 @@ public class Edit_Rating {
 	private void ok(){
 		this.rating.setRating(ratingsChoices.getValue());
 		ratingApproved=true;
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Rating Approved");
+		alert.setHeaderText("Rating Approved!");
+		alert.setContentText("You have rated "+ratingsChoices.getValue()+"for the "+resName+"!");
+		
+		alert.showAndWait();
 		cancel();
 	}
 	
