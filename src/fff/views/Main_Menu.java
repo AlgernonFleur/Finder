@@ -24,27 +24,16 @@ public class Main_Menu {
 	@FXML private Text welcomeText;
 	@FXML private Button accountButton;
 	@FXML private Button loginButton;
-	@FXML private Button searchButton;
 	@FXML private Button homeButton;
-	@FXML private TextField searchField;
-	@FXML private ComboBox<String> searchCombo;
 	
 	private Node centerPiece;
 	
 	@FXML public void initialize(){
 		this.loginButton.setOnAction(e->openLoginDialog());
-		this.searchButton.setOnAction(e->searchButtonAction());
-		this.searchField.setPromptText("Search restaurants");
 		this.homeButton.setOnAction(e->goHome());
 		
-		ObservableList<String> options = FXCollections.observableArrayList(
-			"Name","Postcode","Cuisine","Ratings","Price Range");
-		this.searchCombo.setItems(options);
-		this.searchCombo.getSelectionModel().selectFirst();
-		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("views/Default_View.fxml"));
-		
+		loader.setLocation(App.class.getResource("views/Admin_View.fxml"));
 		try {
 			this.centerPiece = loader.load();
 		} catch (IOException e) {
@@ -78,12 +67,6 @@ public class Main_Menu {
 		view.setMain(this);
 		view.setPreviousPage(null);
 		this.layout.setCenter(centerPiece);
-	}
-	
-	private void searchButtonAction(){
-		if(!searchField.getText().equals("")){
-			System.out.println(searchField.getText()+" "+searchCombo.getValue());
-		}
 	}
 	
 	private void openLoginDialog(){

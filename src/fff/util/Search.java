@@ -4,10 +4,10 @@ import fff.models.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Search {
+public final class Search {
 
 	
-	public ObservableList<Restaurant> getSearchResultsName(ObservableList<Restaurant> restaurants, String searchInput) {
+	public static ObservableList<Restaurant> getSearchResultsName(ObservableList<Restaurant> restaurants, String searchInput) {
 		
 		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
 		
@@ -23,7 +23,7 @@ public class Search {
 	}
 
 
-	public ObservableList<Restaurant> getSearchResultsPostcode(ObservableList<Restaurant> restaurants, String searchInput) {
+	public static ObservableList<Restaurant> getSearchResultsPostcode(ObservableList<Restaurant> restaurants, String searchInput) {
 		
 		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
 		
@@ -39,7 +39,7 @@ public class Search {
 	}
 	
 	
-	public ObservableList<Restaurant> getSearchResultsCuisine(ObservableList<Restaurant> restaurants, String searchInput) {
+	public static ObservableList<Restaurant> getSearchResultsCuisine(ObservableList<Restaurant> restaurants, String searchInput) {
 		
 		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
 		
@@ -55,7 +55,7 @@ public class Search {
 	}
 	
 	
-	public ObservableList<Restaurant> getSearchResultsRatings(ObservableList<Restaurant> restaurants, String searchInput) {
+	public static ObservableList<Restaurant> getSearchResultsRatings(ObservableList<Restaurant> restaurants, String searchInput) {
 		
 		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
 		

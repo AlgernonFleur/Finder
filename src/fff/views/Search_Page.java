@@ -15,6 +15,7 @@ public class Search_Page extends _View_ {
 	@FXML private Button searchButton;
 	@FXML private ComboBox<String> searchOptions;
 	@FXML private TableView<Restaurant> searchResults;
+	@FXML private Button backButton;
 	
 	@FXML public void initialize(){
 		this.searchBar.setPromptText("Search restaurants");
@@ -27,11 +28,17 @@ public class Search_Page extends _View_ {
 			"Name","Postcode","Cuisine","Ratings","Price Range");
 		this.searchOptions.setItems(options);
 		this.searchOptions.getSelectionModel().selectFirst();
+		this.backButton.setOnAction(e->goBack());
 	}
 	
 	private void search(){
 		if(!searchBar.getText().equals("")){
 			System.out.println(searchBar.getText()+" "+searchOptions.getValue());
+			
 		}
+	}
+	
+	private void goBack(){
+		getMain().changeCenter(getPreviousPage());
 	}
 }

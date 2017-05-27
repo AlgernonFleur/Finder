@@ -76,6 +76,16 @@ public class Default_View extends _View_{
 	}
 	
 	private void goToSearchPage(){
-	
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("views/Search_Page.fxml"));
+		Node prevPage = getMain().getCenterPiece();
+		try {
+			getMain().changeCenter(loader.load());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Search_Page view = loader.getController();
+		view.setMain(getMain());
+		view.setPreviousPage(prevPage);
 	}
 }
