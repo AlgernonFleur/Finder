@@ -41,7 +41,7 @@ public class Edit_Rating {
 		ratingApproved=true;
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Rating Approved");
-		alert.setHeaderText("Rating Approved!");
+		alert.setHeaderText(null);
 		alert.setContentText("You have rated "+ratingsChoices.getValue()+"for the "+resName+"!");
 		
 		alert.showAndWait();
