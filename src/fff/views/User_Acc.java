@@ -132,7 +132,9 @@ public class User_Acc extends _View_ {
 			_Overview_.getUserAccount().getClass().getSimpleName().equals("Admin")||
 			this.user.equals(_Overview_.getUserAccount())){
 			this.changeAccDetailsButton.setOnAction(e->openChangeDetailsDialog());
+			this.editRating.setVisible(true);
 		}else{
+			this.editRating.setVisible(false);
 			this.changeAccDetailsButton.setVisible(false);
 		}
 	}
