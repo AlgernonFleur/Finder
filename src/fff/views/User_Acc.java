@@ -126,7 +126,8 @@ public class User_Acc extends _View_ {
 			default:
 				break;
 		}
-		if(this.user.equals(_Overview_.getUserAccount())){
+		if(_Overview_.getUserAccount().getClass().getSimpleName().equals("Owner")||
+			this.user.equals(_Overview_.getUserAccount())){
 			this.changeAccDetailsButton.setOnAction(e->openChangeDetailsDialog());
 		}else{
 			this.changeAccDetailsButton.setVisible(false);
