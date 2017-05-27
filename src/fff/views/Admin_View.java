@@ -102,6 +102,14 @@ public class Admin_View extends _View_{
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
 				showUser(customerTableView.getSelectionModel().getSelectedItem());
 		});
+		this.restaurantTableView.setOnMousePressed(e -> {
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
+				showRes(restaurantTableView.getSelectionModel().getSelectedItem());
+		});
+		this.ratingTableView.setOnMousePressed(e->{
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
+				showUser(ratingTableView.getSelectionModel().getSelectedItem().getCustomerObjectProperty());
+		});
 	}
 	
 	private void showUser(UserAccount user){
@@ -118,6 +126,23 @@ public class Admin_View extends _View_{
 			view.setMain(getMain());
 			view.setPreviousPage(prevPage);
 			view.setUser(user);
+		}
+	}
+	
+	private void showRes(Restaurant r){
+		if(r!=null){
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("views/Res_Acc.fxml"));
+			Node prevPage = getMain().getCenterPiece();
+			try {
+				getMain().changeCenter(loader.load());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Res_Acc view = loader.getController();
+			view.setMain(getMain());
+			view.setPreviousPage(prevPage);
+			view.setRestaurant(r);
 		}
 	}
 }
