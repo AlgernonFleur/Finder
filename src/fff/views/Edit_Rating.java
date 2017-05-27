@@ -45,7 +45,8 @@ public class Edit_Rating {
 		alert.setContentText("You have rated "+ratingsChoices.getValue()+"for the "+resName+"!");
 		
 		alert.showAndWait();
-		cancel();
+		Stage stage = (Stage) cancelButton.getScene().getWindow();
+		stage.close();
 	}
 	
 	private void cancel(){
