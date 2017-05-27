@@ -44,6 +44,7 @@ public class User_Acc extends _View_ {
 	@FXML private TableColumn<Rating,String> ratingResName;
 	@FXML private TableColumn<Rating,Integer> ratingValue;
 	@FXML private Button viewRestaurant2;
+	@FXML private Button editRating;
 	
 	private UserAccount user;
 	
@@ -57,6 +58,7 @@ public class User_Acc extends _View_ {
 		this.ratingTableView.setOnMousePressed(e->{
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2) goToRestaurant2();
 		});
+		this.editRating.setOnAction(e->editSelectedRating());
 	}
 	
 	private void goBack(){
@@ -126,7 +128,8 @@ public class User_Acc extends _View_ {
 			default:
 				break;
 		}
-		if(_Overview_.getUserAccount().getClass().getSimpleName().equals("Owner")||
+		if(_Overview_.getUserAccount()!=null &&
+			_Overview_.getUserAccount().getClass().getSimpleName().equals("Admin")||
 			this.user.equals(_Overview_.getUserAccount())){
 			this.changeAccDetailsButton.setOnAction(e->openChangeDetailsDialog());
 		}else{
@@ -156,6 +159,36 @@ public class User_Acc extends _View_ {
 			this.username.setText(this.user.getUsername());
 			this.fullName.setText(this.user.getFullName());
 			this.email.setText(this.user.getEmail());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void editSelectedRating(){
+		Rating r = ratingTableView.getSelectionModel().getSelectedItem();
+		if (r != null) {
+			openRatingEditDialog(r);
+		}
+	}
+	
+	private void openRatingEditDialog(Rating r){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+				App.class.getResource("views/Edit_Rating.fxml"));
+			
+			Stage loginDialog = new Stage();
+			loginDialog.setScene(new Scene(loader.load()));
+			
+			Edit_Rating dialog = loader.getController();
+			dialog.setRating(r);
+			
+			loginDialog.setTitle("Change Details");
+			loginDialog.initModality(Modality.WINDOW_MODAL);
+			loginDialog.initOwner(_Overview_.getStage());
+			loginDialog.setResizable(false);
+			loginDialog.sizeToScene();
+			loginDialog.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
