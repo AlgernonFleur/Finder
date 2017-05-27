@@ -9,8 +9,11 @@ import fff.models.users.UserAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -23,6 +26,7 @@ public class User_Acc extends _View_ {
 	@FXML private Text fullName;
 	@FXML private Text email;
 	@FXML private Button backButton;
+	@FXML private Button changeAccDetailsButton;
 	@FXML private TabPane tabs;
 	@FXML private Tab resTab;
 	@FXML private Tab ratTab;
@@ -121,6 +125,34 @@ public class User_Acc extends _View_ {
 				break;
 			default:
 				break;
+		}
+		if(this.user.equals(_Overview_.getUserAccount())){
+			this.changeAccDetailsButton.setOnAction(e->openChangeDetailsDialog());
+		}else{
+			this.changeAccDetailsButton.setVisible(false);
+		}
+	}
+	
+	private void openChangeDetailsDialog(){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+				App.class.getResource("views/Edit_User.fxml"));
+			
+			Stage loginDialog = new Stage();
+			loginDialog.setScene(new Scene(loader.load()));
+			
+			Edit_User dialog = loader.getController();
+			dialog.setUser(user);
+			
+			loginDialog.setTitle("Change Details");
+			loginDialog.initModality(Modality.WINDOW_MODAL);
+			loginDialog.initOwner(_Overview_.getStage());
+			loginDialog.setResizable(false);
+			loginDialog.sizeToScene();
+			loginDialog.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
