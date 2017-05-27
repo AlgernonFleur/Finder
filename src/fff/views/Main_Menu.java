@@ -86,13 +86,54 @@ public class Main_Menu {
 			
 			if(_Overview_.getUserAccount() != null){
 				welcomeText.setText("Welcome, "+ _Overview_.getUserAccount().getFullName());
-				accountButton.setText("View Account");
+				
 				loginButton.setText("Logout");
 				loginButton.setOnAction(e-> logout());
+				switch(_Overview_.getUserAccount().getClass().getSimpleName()){
+					case "Admin":
+						accountButton.setText("Admin View");
+						accountButton.setOnAction(e->goToAdminView());
+						break;
+					default:
+						accountButton.setText("View Account");
+						accountButton.setOnAction(e->goToUserAccView());
+						break;
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void goToAdminView(){
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("views/Admin_View.fxml"));
+		
+		try {
+			this.centerPiece = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		_View_ view = loader.getController();
+		view.setMain(this);
+		view.setPreviousPage(null);
+		this.layout.setCenter(centerPiece);
+	}
+	
+	private void goToUserAccView(){
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("views/User_Acc.fxml"));
+		Node prevPage = centerPiece;
+		try {
+			this.centerPiece = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		User_Acc view = loader.getController();
+		view.setMain(this);
+		view.setPreviousPage(prevPage);
+		view.setUser(_Overview_.getUserAccount());
+		this.layout.setCenter(centerPiece);
 	}
 	
 	private void logout() {

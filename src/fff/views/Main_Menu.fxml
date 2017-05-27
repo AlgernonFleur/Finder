@@ -36,7 +36,7 @@
                   </StackPane>
                   <ButtonBar buttonMinWidth="0.0" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
                     <buttons>
-                      <Button fx:id="accountButton" mnemonicParsing="false" prefHeight="25.0" text="New Account" />
+                      <Button fx:id="accountButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="New Account" />
                         <Button fx:id="loginButton" mnemonicParsing="false" text="Login" />
                     </buttons>
                      <padding>
