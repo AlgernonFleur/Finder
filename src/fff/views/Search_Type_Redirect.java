@@ -89,7 +89,17 @@ public class Search_Type_Redirect extends _View_{
 	}
 	
 	private void searchByRating(){
-	
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("views/Search_Rating.fxml"));
+		Node prevPage = getMain().getCenterPiece();
+		try {
+			getMain().changeCenter(loader.load());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Search_Rating view = loader.getController();
+		view.setMain(getMain());
+		view.setPreviousPage(prevPage);
 	}
 	
 	private void searchByPriceRange(){
