@@ -19,6 +19,8 @@ import java.util.Optional;
 
 public class Res_Acc extends _View_ {
 	
+	@FXML private Button editRes;
+	
 	@FXML private Text resID;
 	@FXML private Text resName;
 	@FXML private Text resCuisine;
@@ -51,6 +53,7 @@ public class Res_Acc extends _View_ {
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2) goToUser();
 		});
 		this.editMenu.setVisible(false);
+		this.editRes.setVisible(false);
 	}
 	
 	private void goBack(){
@@ -116,6 +119,8 @@ public class Res_Acc extends _View_ {
 		}else if(_Overview_.getUserAccount().equals(restaurant.getOwnerObjectProperty())){
 			this.editMenu.setVisible(true);
 			this.editMenu.setOnAction(e->editMenuDialog());
+			this.editRes.setVisible(true);
+			this.editRes.setOnAction(e-> editResDetailsDialog());
 		} else if(_Overview_.getUserAccount().getClass().getSimpleName().equals("Customer")){
 			boolean customerAlreadyRated = false;
 			for(Rating r:restaurant.getRatings()){
@@ -264,6 +269,33 @@ public class Res_Acc extends _View_ {
 			editMenu.showAndWait();
 			restaurant.calculateMenu();
 			this.resAveragePrice.setText(String.format("%2.2f",this.restaurant.getPriceRange()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void editResDetailsDialog(){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+				App.class.getResource("views/Edit_Res.fxml"));
+			
+			Stage editRes = new Stage();
+			editRes.setScene(new Scene(loader.load()));
+			
+			Edit_Res edit_res_ctrl = loader.getController();
+			edit_res_ctrl.setRestaurant(this.restaurant);
+			
+			editRes.setTitle("Edit Restaurant Details");
+			editRes.initModality(Modality.WINDOW_MODAL);
+			editRes.initOwner(_Overview_.getStage());
+			editRes.setResizable(false);
+			editRes.sizeToScene();
+			editRes.showAndWait();
+			
+			this.resName.setText(this.restaurant.getName());
+			this.resCuisine.setText(this.restaurant.getCuisine());
+			this.resPostcode.setText(String.valueOf(this.restaurant.getPostcode()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
