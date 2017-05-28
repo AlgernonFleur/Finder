@@ -36,23 +36,31 @@ public final class Sort {
 		return resPost2-resPost1;
 	};
 	public static Comparator<Restaurant> ResRatingCompAsc = (o1, o2) -> {
-		int resRating1 = (int) o1.getAverageRatings();
-		int resRating2 = (int) o2.getAverageRatings();
-		return resRating1-resRating2;
+		float resRating1 = o1.getAverageRatings();
+		float resRating2 = o2.getAverageRatings();
+		if(resRating1<resRating2) return -1;
+		if(resRating1>resRating2) return 1;
+		return 0;
 	};
 	public static Comparator<Restaurant> ResRatingCompDes = (o1, o2) -> {
-		int resRating1 = (int) o1.getAverageRatings();
-		int resRating2 = (int) o2.getAverageRatings();
-		return resRating2-resRating1;
+		float resRating1 = o1.getAverageRatings();
+		float resRating2 = o2.getAverageRatings();
+		if(resRating1<resRating2) return 1;
+		if(resRating1>resRating2) return -1;
+		return 0;
 	};
 	public static Comparator<Restaurant> ResPriceCompAsc = (o1, o2) -> {
-		int resRating1 = (int) o1.getPriceRange();
-		int resRating2 = (int) o2.getPriceRange();
-		return resRating1-resRating2;
+		float resPrice1 = o1.getPriceRange();
+		float resPrice2 = o2.getPriceRange();
+		if(resPrice1<resPrice2) return -1;
+		if(resPrice1>resPrice2) return 1;
+		return 0;
 	};
 	public static Comparator<Restaurant> ResPriceCompDes = (o1, o2) -> {
-		int resRating1 = (int) o1.getPriceRange();
-		int resRating2 = (int) o2.getPriceRange();
-		return resRating2-resRating1;
+		float resPrice1 = o1.getPriceRange();
+		float resPrice2 = o2.getPriceRange();
+		if(resPrice1<resPrice2) return 1;
+		if(resPrice1>resPrice2) return -1;
+		return 0;
 	};
 }

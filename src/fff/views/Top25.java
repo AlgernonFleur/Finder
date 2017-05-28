@@ -2,6 +2,9 @@ package fff.views;
 
 import fff.App;
 import fff.models.Restaurant;
+import fff.util.Sort;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,6 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 public class Top25 extends _View_ {
 	
@@ -23,7 +28,12 @@ public class Top25 extends _View_ {
 	@FXML private Button backButton;
 	
 	@FXML public void initialize(){
-		restaurantTableView.setItems(_Overview_.getDatabase().getRestaurants());
+		List<Restaurant> top25list =
+			_Overview_.getDatabase().getRestaurants().subList(0,_Overview_.getDatabase().getRestaurants().size());
+		Collections.sort(top25list,Sort.ResRatingCompDes);
+		ObservableList<Restaurant> observableList = FXCollections.observableList(top25list.subList(0,25));
+		
+		restaurantTableView.setItems(observableList);
 		resName.setCellValueFactory(d->d.getValue().nameProperty());
 		resCuisine.setCellValueFactory(d->d.getValue().cuisineProperty());
 		resPostCode.setCellValueFactory(d->d.getValue().postcodeProperty().asString());
