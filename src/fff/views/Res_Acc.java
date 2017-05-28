@@ -107,6 +107,7 @@ public class Res_Acc extends _View_ {
 		this.ratingsCustomer.setCellValueFactory(data->data.getValue().getCustomerObjectProperty().fullNameProperty());
 		this.ratingsValue.setCellValueFactory(data->data.getValue().ratingProperty().asString());
 		
+		this.favouriteButton.setText("Add fave");
 		if(_Overview_.getUserAccount()==null){
 			this.ratingButton.setOnAction(e->notLoggedInAlert());
 			this.favouriteButton.setOnAction(e->notLoggedInAlert());
