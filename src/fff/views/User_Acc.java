@@ -36,7 +36,6 @@ public class User_Acc extends _View_ {
 	@FXML private TableColumn<Restaurant,String> restaurantName;
 	@FXML private TableColumn<Restaurant,Integer> restaurantPostcode;
 	@FXML private TableColumn<Restaurant,String> restaurantCuisine;
-	@FXML private TableColumn<Restaurant,String> restaurantOwner;
 	@FXML private TableColumn<Restaurant,String> restaurantRating;
 	@FXML private TableColumn<Restaurant,String> restaurantPrice;
 	@FXML private Button viewRestaurant1;
@@ -45,7 +44,6 @@ public class User_Acc extends _View_ {
 	@FXML private TableColumn<Restaurant,String> restaurantName1;
 	@FXML private TableColumn<Restaurant,Integer> restaurantPostcode1;
 	@FXML private TableColumn<Restaurant,String> restaurantCuisine1;
-	@FXML private TableColumn<Restaurant,String> restaurantOwner1;
 	@FXML private TableColumn<Restaurant,String> restaurantRating1;
 	@FXML private TableColumn<Restaurant,String> restaurantPrice1;
 	@FXML private Button viewRestaurant11;
@@ -133,7 +131,6 @@ public class User_Acc extends _View_ {
 				restaurantName.setCellValueFactory(data->data.getValue().nameProperty());
 				restaurantPostcode.setCellValueFactory(data->data.getValue().postcodeProperty().asObject());
 				restaurantCuisine.setCellValueFactory(data->data.getValue().cuisineProperty());
-				restaurantOwner.setCellValueFactory(data->data.getValue().ownerIDProperty());
 				restaurantRating.setCellValueFactory(data->data.getValue().averageRatingsProperty().asString("%.1f"));
 				restaurantPrice.setCellValueFactory(data->data.getValue().priceRangeProperty().asString("%2.2f"));
 				break;
@@ -150,7 +147,6 @@ public class User_Acc extends _View_ {
 				restaurantName1.setCellValueFactory(data->data.getValue().nameProperty());
 				restaurantPostcode1.setCellValueFactory(data->data.getValue().postcodeProperty().asObject());
 				restaurantCuisine1.setCellValueFactory(data->data.getValue().cuisineProperty());
-				restaurantOwner1.setCellValueFactory(data->data.getValue().ownerIDProperty());
 				restaurantRating1.setCellValueFactory(data->data.getValue().averageRatingsProperty().asString("%.1f"));
 				restaurantPrice1.setCellValueFactory(data->data.getValue().priceRangeProperty().asString("%2.2f"));
 				break;

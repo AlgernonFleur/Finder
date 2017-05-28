@@ -113,7 +113,6 @@
                                                       <TableColumn fx:id="restaurantName" prefWidth="75.0" text="Name" />
                                                       <TableColumn fx:id="restaurantPostcode" prefWidth="75.0" text="Postcode" />
                                                       <TableColumn fx:id="restaurantCuisine" prefWidth="75.0" text="Cuisine" />
-                                                      <TableColumn fx:id="restaurantOwner" prefWidth="75.0" text="Owner" />
                                           <TableColumn fx:id="restaurantRating" prefWidth="75.0" text="Avrg. Rating" />
                                           <TableColumn fx:id="restaurantPrice" prefWidth="75.0" text="Avrg. Price" />
                                                   </columns>
@@ -185,7 +184,6 @@
                                           <TableColumn fx:id="restaurantName1" prefWidth="75.0" text="Name" />
                                           <TableColumn fx:id="restaurantPostcode1" prefWidth="75.0" text="Postcode" />
                                           <TableColumn fx:id="restaurantCuisine1" prefWidth="75.0" text="Cuisine" />
-                                          <TableColumn fx:id="restaurantOwner1" prefWidth="75.0" text="Owner" />
                                           <TableColumn fx:id="restaurantRating1" prefWidth="75.0" text="Avrg. Rating" />
                                           <TableColumn fx:id="restaurantPrice1" prefWidth="75.0" text="Avrg. Price" />
                                        </columns>
