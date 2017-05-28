@@ -29,6 +29,9 @@ public class Edit_User {
 	public void setUser(UserAccount user){
 		this.user = user;
 		userID.setText(user.getID());
+		fullNameField.setText(user.getFullName());
+		usernameField.setText(user.getUsername());
+		emailField.setText(user.getEmail());
 	}
 	
 	private void ok(){
