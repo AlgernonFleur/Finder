@@ -52,6 +52,8 @@ public class User_Acc extends _View_ {
 	@FXML private TableColumn<Rating,String> ratingResName;
 	@FXML private TableColumn<Rating,Integer> ratingValue;
 	@FXML private Button viewRestaurant2;
+	@FXML private Button removeFave;
+	
 	@FXML private Button editRating;
 	
 	private UserAccount user;
@@ -162,6 +164,14 @@ public class User_Acc extends _View_ {
 			this.editRating.setVisible(false);
 			this.changeAccDetailsButton.setVisible(false);
 		}
+		
+		if(_Overview_.getUserAccount()!=null)
+			if(_Overview_.getUserAccount().equals(user)){
+				this.removeFave.setOnAction(e->removeFavourite());
+			}else{
+				this.removeFave.setVisible(false);
+			}
+		else this.removeFave.setVisible(false);
 	}
 	
 	private void openChangeDetailsDialog(){
@@ -219,5 +229,10 @@ public class User_Acc extends _View_ {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void removeFavourite(){
+		int selected = restaurantTableView1.getSelectionModel().getSelectedIndex();
+		if(selected>=0)restaurantTableView1.getItems().remove(selected);
 	}
 }
