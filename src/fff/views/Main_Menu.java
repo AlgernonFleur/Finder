@@ -2,6 +2,9 @@ package fff.views;
 
 
 import fff.App;
+import fff.models.users.Customer;
+import fff.models.users.Owner;
+import fff.models.users.UserAccount;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,6 +32,7 @@ public class Main_Menu {
 	private Node centerPiece;
 	
 	@FXML public void initialize(){
+		this.accountButton.setOnAction(e->createCustomer());
 		this.loginButton.setOnAction(e->openLoginDialog());
 		this.homeButton.setOnAction(e->goHome());
 		
@@ -140,8 +144,47 @@ public class Main_Menu {
 		_Overview_.setUserAccount(null);
 		welcomeText.setText("");
 		accountButton.setText("New Account");
+		accountButton.setOnAction(e->createCustomer());
 		loginButton.setText("Login");
 		loginButton.setOnAction(e->openLoginDialog());
 		goHome();
+	}
+	
+	private void createCustomer(){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+				App.class.getResource("views/Create_User.fxml"));
+			
+			Stage createDialog = new Stage();
+			createDialog.setScene(new Scene(loader.load()));
+			
+			Create_User create_user = loader.getController();
+			
+			createDialog.setTitle("Create User");
+			createDialog.initModality(Modality.WINDOW_MODAL);
+			createDialog.initOwner(_Overview_.getStage());
+			createDialog.setResizable(false);
+			createDialog.sizeToScene();
+			createDialog.showAndWait();
+			
+			if(create_user.getNewUser()!=null){
+				UserAccount newUser = create_user.getNewUser();
+				if(newUser.getClass().getSimpleName().equals("Customer"))
+					_Overview_.getDatabase().addCustomer((Customer) newUser);
+				else _Overview_.getDatabase().addOwner((Owner) newUser);
+				_Overview_.setUserAccount(newUser);
+				welcomeText.setText("Welcome, "+ _Overview_.getUserAccount().getFullName());
+				
+				loginButton.setText("Logout");
+				loginButton.setOnAction(e-> logout());
+				accountButton.setText("View Account");
+				accountButton.setOnAction(e->goToUserAccView());
+				goHome();
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
