@@ -189,4 +189,20 @@ public class Database {
 	public ObservableList<Rating> getRatings() {
 		return ratings;
 	}
+	
+	public void addOwner(Owner o){
+		this.owners.add(o);
+	}
+	
+	public void addRestaurant(Restaurant r){
+		this.restaurants.add(r);
+	}
+	
+	public void addCustomer(Customer c){
+		this.customers.add(c);
+	}
+	
+	public void addRating(Rating r){
+		this.ratings.add(r);
+	}
 }
