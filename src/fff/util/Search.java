@@ -57,12 +57,12 @@ public final class Search {
 	throws NumberFormatException{
 		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
 		float in1,in2;
-		if(searchInput1==null){
+		if(searchInput1.equals("")){
 			in1 = 0;
 		}else{
 			in1 = Float.parseFloat(searchInput1);
-		}if(searchInput2==null){
-			in2 = 0;
+		}if(searchInput2.equals("")){
+			in2 = Float.MAX_VALUE;
 		}else{
 			in2 = Float.parseFloat(searchInput2);
 		}
