@@ -70,6 +70,7 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </GridPane.margin>
                   </Text>
+                  <Button fx:id="editRes" mnemonicParsing="false" text="Edit Details" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>
