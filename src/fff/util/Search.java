@@ -56,9 +56,16 @@ public final class Search {
 	getSearchResultsPrice(ObservableList<Restaurant> restaurants, String searchInput1, String searchInput2)
 	throws NumberFormatException{
 		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
-		
-		float in1 = Float.parseFloat(searchInput1);
-		float in2 = Float.parseFloat(searchInput2);
+		float in1,in2;
+		if(searchInput1==null){
+			in1 = 0;
+		}else{
+			in1 = Float.parseFloat(searchInput1);
+		}if(searchInput2==null){
+			in2 = 0;
+		}else{
+			in2 = Float.parseFloat(searchInput2);
+		}
 		
 		for (Restaurant restaurant : restaurants)
 			if (restaurant.getPriceRange() >= in1 && restaurant.getPriceRange() <= in2)
