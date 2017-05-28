@@ -112,6 +112,16 @@ public class Default_View extends _View_{
 	}
 	
 	private void goToTop25(){
-	
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("views/Top25.fxml"));
+		Node prevPage = getMain().getCenterPiece();
+		try {
+			getMain().changeCenter(loader.load());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Top25 view = loader.getController();
+		view.setMain(getMain());
+		view.setPreviousPage(prevPage);
 	}
 }
