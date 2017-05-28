@@ -10,64 +10,59 @@ public final class Search {
 	getSearchResultsName(ObservableList<Restaurant> restaurants, String searchInput) {
 		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
 		
-		int i = 0;
-		while (i < restaurants.size()) {
-			if (restaurants.get(i).getName().contains(searchInput))
-				searchResults.add(restaurants.get(i));
-			i++;
-		}
-		return searchResults;
-	}
-
-	
-	public static ObservableList<Restaurant>
-	getSearchResultsPostcode(ObservableList<Restaurant> restaurants, String searchInput) {
-		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
+		for (Restaurant restaurant : restaurants)
+			if (restaurant.getName().toLowerCase().contains(searchInput.toLowerCase()))
+				searchResults.add(restaurant);
 		
-		int i = 0;
-		while (i < restaurants.size()) {
-			if (Integer.toString(restaurants.get(i).getPostcode()).contains(searchInput))
-				searchResults.add(restaurants.get(i));
-			i++;
-		}
 		return searchResults;
 	}
-	
 	
 	public static ObservableList<Restaurant>
 	getSearchResultsCuisine(ObservableList<Restaurant> restaurants, String searchInput) {
 		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
 		
-		int i = 0;
-		while (i < restaurants.size()) {
-			if (restaurants.get(i).getCuisine().contains(searchInput))
-				searchResults.add(restaurants.get(i));
-			
-			i++;
-		}
+		for (Restaurant restaurant : restaurants)
+			if (restaurant.getCuisine().toLowerCase().contains(searchInput.toLowerCase()))
+				searchResults.add(restaurant);
+		
 		return searchResults;
 	}
-	
 	
 	public static ObservableList<Restaurant>
-	getSearchResultsRatings(ObservableList<Restaurant> restaurants, String searchInput) {
+	getSearchResultsPostcode(ObservableList<Restaurant> restaurants, String searchInput) {
 		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
 		
-		int i = 0;
-		float inputRating = Float.MAX_VALUE;
-		try {
-			inputRating = Float.parseFloat(searchInput);
-		} catch (NumberFormatException e) {
-			
-		}
-		
-		while (i < restaurants.size()) {
-			if (restaurants.get(i).getAverageRatings() >= inputRating) {
-				searchResults.add(restaurants.get(i));
-			}
-			i++;
-		}
+		for (Restaurant restaurant : restaurants)
+			if (Integer.toString(restaurant.getPostcode()).contains(searchInput))
+				searchResults.add(restaurant);
 		return searchResults;
 	}
 	
+	public static ObservableList<Restaurant>
+	getSearchResultsRatings(ObservableList<Restaurant> restaurants, String searchInput1, String searchInput2)
+	throws NumberFormatException{
+		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
+		
+		float in1 = Float.parseFloat(searchInput1);
+		float in2 = Float.parseFloat(searchInput2);
+		
+		for (Restaurant restaurant : restaurants)
+			if (restaurant.getAverageRatings() >= in1 && restaurant.getAverageRatings() <= in2)
+				searchResults.add(restaurant);
+		return searchResults;
+	}
+	
+	public static ObservableList<Restaurant>
+	getSearchResultsPrice(ObservableList<Restaurant> restaurants, String searchInput1, String searchInput2)
+	throws NumberFormatException{
+		ObservableList<Restaurant> searchResults = FXCollections.observableArrayList();
+		
+		float in1 = Float.parseFloat(searchInput1);
+		float in2 = Float.parseFloat(searchInput2);
+		
+		for (Restaurant restaurant : restaurants)
+			if (restaurant.getPriceRange() >= in1 && restaurant.getPriceRange() <= in2)
+				searchResults.add(restaurant);
+		return searchResults;
+	}
 }
