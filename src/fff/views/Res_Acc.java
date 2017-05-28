@@ -109,6 +109,7 @@ public class Res_Acc extends _View_ {
 		
 		if(_Overview_.getUserAccount()==null){
 			this.ratingButton.setOnAction(e->notLoggedInAlert());
+			this.favouriteButton.setOnAction(e->notLoggedInAlert());
 		} else if(_Overview_.getUserAccount().getClass().getSimpleName().equals("Customer")){
 			boolean customerAlreadyRated = false;
 			for(Rating r:restaurant.getRatings()){
@@ -133,6 +134,7 @@ public class Res_Acc extends _View_ {
 			}
 		} else {
 			this.ratingButton.setOnAction(e->notLoggedInAlert());
+			this.favouriteButton.setOnAction(e->notLoggedInAlert());
 		}
 	}
 	
@@ -150,16 +152,17 @@ public class Res_Acc extends _View_ {
 		}
 	}
 	
-	private void addToFavourites(Customer c){Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+	private void addToFavourites(Customer c){
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Add to favourites");
 		alert.setHeaderText(null);
-		alert.setContentText("Do you wish to add "+restaurant.getName()+" to your favourites?");
+		alert.setContentText("Do you wish to add " + restaurant.getName() + " to your favourites?");
 		
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK){
+		if (result.get() == ButtonType.OK) {
 			c.getFavourites().add(restaurant);
 			this.favouriteButton.setText("Remove fave");
-			this.favouriteButton.setOnAction(e->removeFromFavourites(c));
+			this.favouriteButton.setOnAction(e -> removeFromFavourites(c));
 		}
 	}
 	
@@ -167,7 +170,7 @@ public class Res_Acc extends _View_ {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Must be logged in");
 		alert.setHeaderText(null);
-		alert.setContentText("You must be logged in as a Customer to rate!");
+		alert.setContentText("You must be logged in as a Customer to do that!");
 		
 		alert.showAndWait();
 	}
