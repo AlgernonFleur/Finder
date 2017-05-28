@@ -129,7 +129,7 @@
                                               </TableView>
                                  </center>
                                  <bottom>
-                                    <Button mnemonicParsing="false" text="Edit Menu" BorderPane.alignment="CENTER" />
+                                    <Button fx:id="editMenu" mnemonicParsing="false" text="Edit Menu" BorderPane.alignment="CENTER" />
                                  </bottom>
                               </BorderPane>
                                     </children>

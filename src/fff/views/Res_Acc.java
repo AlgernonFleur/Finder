@@ -29,6 +29,7 @@ public class Res_Acc extends _View_ {
 	@FXML private TableView<Food> menu;
 	@FXML private TableColumn<Food,String> foodNames;
 	@FXML private TableColumn<Food,String> foodPrices;
+	@FXML private Button editMenu;
 	
 	@FXML private TableView<Rating> ratings;
 	@FXML private TableColumn<Rating,String> ratingsCustomer;
@@ -49,6 +50,7 @@ public class Res_Acc extends _View_ {
 		this.ratings.setOnMousePressed(e->{
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2) goToUser();
 		});
+		this.editMenu.setVisible(false);
 	}
 	
 	private void goBack(){
@@ -111,6 +113,9 @@ public class Res_Acc extends _View_ {
 		if(_Overview_.getUserAccount()==null){
 			this.ratingButton.setOnAction(e->notLoggedInAlert());
 			this.favouriteButton.setOnAction(e->notLoggedInAlert());
+		}else if(_Overview_.getUserAccount().equals(restaurant.getOwnerObjectProperty())){
+			this.editMenu.setVisible(true);
+			this.editMenu.setOnAction(e->editMenuDialog());
 		} else if(_Overview_.getUserAccount().getClass().getSimpleName().equals("Customer")){
 			boolean customerAlreadyRated = false;
 			for(Rating r:restaurant.getRatings()){
@@ -230,6 +235,25 @@ public class Res_Acc extends _View_ {
 				this.ratingButton.setText("Edit Review");
 				this.ratingButton.setOnAction(e->editRating(r));
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void editMenuDialog(){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+				App.class.getResource("views/Edit_Menu.fxml"));
+			
+			Stage editMenu = new Stage();
+			editMenu.setScene(new Scene(loader.load()));
+			editMenu.setTitle("Login");
+			editMenu.initModality(Modality.WINDOW_MODAL);
+			editMenu.initOwner(_Overview_.getStage());
+			editMenu.setResizable(false);
+			editMenu.sizeToScene();
+			editMenu.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
