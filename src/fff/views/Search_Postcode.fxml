@@ -82,7 +82,7 @@
    <top>
       <StackPane prefHeight="30.0" prefWidth="300.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Cuisine" underline="true">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Postcode" underline="true">
                <font>
                   <Font size="18.0" />
                </font>
