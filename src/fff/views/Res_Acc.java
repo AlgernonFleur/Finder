@@ -143,6 +143,11 @@ public class Res_Acc extends _View_ {
 				this.favouriteButton.setText("Add fave");
 				this.favouriteButton.setOnAction(e->addToFavourites(c));
 			}
+		} else if(_Overview_.getUserAccount().getClass().getSimpleName().equals("Admin")){
+			this.editMenu.setVisible(true);
+			this.editMenu.setOnAction(e->editMenuDialog());
+			this.editRes.setVisible(true);
+			this.editRes.setOnAction(e-> editResDetailsDialog());
 		} else {
 			this.ratingButton.setOnAction(e->notLoggedInAlert());
 			this.favouriteButton.setOnAction(e->notLoggedInAlert());

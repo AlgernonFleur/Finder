@@ -161,6 +161,7 @@ public class User_Acc extends _View_ {
 			this.user.equals(_Overview_.getUserAccount())){
 			this.changeAccDetailsButton.setOnAction(e->openChangeDetailsDialog());
 			this.editRating.setVisible(true);
+			this.removeFave.setOnAction(e->removeFavourite());
 		}else{
 			this.editRating.setVisible(false);
 			this.changeAccDetailsButton.setVisible(false);
@@ -173,7 +174,7 @@ public class User_Acc extends _View_ {
 			}else if(_Overview_.getUserAccount().equals(user) &&
 				_Overview_.getUserAccount().getClass().getSimpleName().equals("Owner")) {
 				this.addRestaurant.setOnAction(e->addNewRestaurant());
-			}else {
+			} else {
 				this.removeFave.setVisible(false);
 				this.addRestaurant.setVisible(false);
 			}
