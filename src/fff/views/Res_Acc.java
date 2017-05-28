@@ -199,6 +199,8 @@ public class Res_Acc extends _View_ {
 			loginDialog.setResizable(false);
 			loginDialog.sizeToScene();
 			loginDialog.showAndWait();
+			restaurant.calculateRatings();
+			this.resRating.setText(String.format("%1.1f",this.restaurant.getAverageRatings()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -234,6 +236,8 @@ public class Res_Acc extends _View_ {
 				restaurant.getRatings().add(r);
 				this.ratingButton.setText("Edit Review");
 				this.ratingButton.setOnAction(e->editRating(r));
+				restaurant.calculateRatings();
+				this.resRating.setText(String.format("%1.1f",this.restaurant.getAverageRatings()));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -248,12 +252,18 @@ public class Res_Acc extends _View_ {
 			
 			Stage editMenu = new Stage();
 			editMenu.setScene(new Scene(loader.load()));
-			editMenu.setTitle("Login");
+			
+			Edit_Menu edit_menu_ctrl = loader.getController();
+			edit_menu_ctrl.setMenu(restaurant.getMenu());
+			
+			editMenu.setTitle("Edit Menu");
 			editMenu.initModality(Modality.WINDOW_MODAL);
 			editMenu.initOwner(_Overview_.getStage());
 			editMenu.setResizable(false);
 			editMenu.sizeToScene();
 			editMenu.showAndWait();
+			restaurant.calculateMenu();
+			this.resAveragePrice.setText(String.format("%2.2f",this.restaurant.getPriceRange()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
