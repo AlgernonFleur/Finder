@@ -1,13 +1,18 @@
 package fff.views;
 
+import fff.App;
 import fff.models.Restaurant;
 import fff.util.Search;
 import fff.util.Sort;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+
+import java.io.IOException;
 
 public class Search_Name extends _View_ {
 	
@@ -43,6 +48,10 @@ public class Search_Name extends _View_ {
 		));
 		sortOptions.setPromptText("Sort results");
 		sortOptions.setOnAction(e->sort());
+		resultsTableView.setOnMousePressed(e -> {
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
+				showRes(resultsTableView.getSelectionModel().getSelectedItem());
+		});
 		backButton.setOnAction(e->getMain().changeCenter(getPreviousPage()));
 	}
 	
@@ -80,6 +89,23 @@ public class Search_Name extends _View_ {
 			case 7: results.sort(Sort.ResRatingCompDes);break;
 			case 8: results.sort(Sort.ResPriceCompAsc);break;
 			case 9: results.sort(Sort.ResPriceCompDes);break;
+		}
+	}
+	
+	private void showRes(Restaurant r){
+		if(r!=null){
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("views/Res_Acc.fxml"));
+			Node prevPage = getMain().getCenterPiece();
+			try {
+				getMain().changeCenter(loader.load());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Res_Acc view = loader.getController();
+			view.setMain(getMain());
+			view.setPreviousPage(prevPage);
+			view.setRestaurant(r);
 		}
 	}
 }
