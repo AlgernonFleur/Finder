@@ -96,7 +96,7 @@ public class Res_Acc extends _View_ {
 		this.resName.setText(this.restaurant.getName());
 		this.resCuisine.setText(this.restaurant.getCuisine());
 		this.resPostcode.setText(String.valueOf(this.restaurant.getPostcode()));
-		this.resRating.setText(String.valueOf((int)this.restaurant.getAverageRatings()));
+		this.resRating.setText(String.format("%1.1f",this.restaurant.getAverageRatings()));
 		this.resAveragePrice.setText(String.format("%2.2f",this.restaurant.getPriceRange()));
 		
 		this.menu.setItems(this.restaurant.getMenu());

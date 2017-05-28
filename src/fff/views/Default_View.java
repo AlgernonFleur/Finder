@@ -35,8 +35,7 @@ public class Default_View extends _View_{
 		this.featuredRestaurantName.setText(featuredRestaurant.getName());
 		this.featuredRestaurantCuisine.setText("Cuisine: "+featuredRestaurant.getCuisine());
 		this.featuredRestaurantRating.setText("Rating: "+
-			String.valueOf(
-				(int)featuredRestaurant.getAverageRatings())+"/10");
+			String.format("%1.1f",featuredRestaurant.getAverageRatings())+"/10");
 		
 		this.featuredRestaurantPane.setOnMousePressed(e->{
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2)

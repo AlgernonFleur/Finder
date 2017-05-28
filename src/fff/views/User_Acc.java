@@ -37,8 +37,8 @@ public class User_Acc extends _View_ {
 	@FXML private TableColumn<Restaurant,Integer> restaurantPostcode;
 	@FXML private TableColumn<Restaurant,String> restaurantCuisine;
 	@FXML private TableColumn<Restaurant,String> restaurantOwner;
-	@FXML private TableColumn<Restaurant,Float> restaurantRating;
-	@FXML private TableColumn<Restaurant,Float> restaurantPrice;
+	@FXML private TableColumn<Restaurant,String> restaurantRating;
+	@FXML private TableColumn<Restaurant,String> restaurantPrice;
 	@FXML private Button viewRestaurant1;
 	
 	@FXML private TableView<Restaurant> restaurantTableView1;
@@ -46,8 +46,8 @@ public class User_Acc extends _View_ {
 	@FXML private TableColumn<Restaurant,Integer> restaurantPostcode1;
 	@FXML private TableColumn<Restaurant,String> restaurantCuisine1;
 	@FXML private TableColumn<Restaurant,String> restaurantOwner1;
-	@FXML private TableColumn<Restaurant,Float> restaurantRating1;
-	@FXML private TableColumn<Restaurant,Float> restaurantPrice1;
+	@FXML private TableColumn<Restaurant,String> restaurantRating1;
+	@FXML private TableColumn<Restaurant,String> restaurantPrice1;
 	@FXML private Button viewRestaurant11;
 	
 	@FXML private TableView<Rating> ratingTableView;
@@ -134,8 +134,8 @@ public class User_Acc extends _View_ {
 				restaurantPostcode.setCellValueFactory(data->data.getValue().postcodeProperty().asObject());
 				restaurantCuisine.setCellValueFactory(data->data.getValue().cuisineProperty());
 				restaurantOwner.setCellValueFactory(data->data.getValue().ownerIDProperty());
-				restaurantRating.setCellValueFactory(data->data.getValue().averageRatingsProperty().asObject());
-				restaurantPrice.setCellValueFactory(data->data.getValue().priceRangeProperty().asObject());
+				restaurantRating.setCellValueFactory(data->data.getValue().averageRatingsProperty().asString("%.1f"));
+				restaurantPrice.setCellValueFactory(data->data.getValue().priceRangeProperty().asString("%2.2f"));
 				break;
 			case "Customer":
 				this.resTab.setDisable(true);
@@ -151,8 +151,8 @@ public class User_Acc extends _View_ {
 				restaurantPostcode1.setCellValueFactory(data->data.getValue().postcodeProperty().asObject());
 				restaurantCuisine1.setCellValueFactory(data->data.getValue().cuisineProperty());
 				restaurantOwner1.setCellValueFactory(data->data.getValue().ownerIDProperty());
-				restaurantRating1.setCellValueFactory(data->data.getValue().averageRatingsProperty().asObject());
-				restaurantPrice1.setCellValueFactory(data->data.getValue().priceRangeProperty().asObject());
+				restaurantRating1.setCellValueFactory(data->data.getValue().averageRatingsProperty().asString("%.1f"));
+				restaurantPrice1.setCellValueFactory(data->data.getValue().priceRangeProperty().asString("%2.2f"));
 				break;
 			default:
 				break;
