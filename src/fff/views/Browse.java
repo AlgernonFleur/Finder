@@ -17,7 +17,6 @@ public class Browse extends _View_ {
 	@FXML private TableColumn<Restaurant,String> resName;
 	@FXML private TableColumn<Restaurant,String> resCuisine;
 	@FXML private TableColumn<Restaurant,String> resPostCode;
-	@FXML private TableColumn<Restaurant,String> resOwnerName;
 	@FXML private TableColumn<Restaurant,String> resRating;
 	@FXML private TableColumn<Restaurant,String> resPrice;
 	@FXML private Button backButton;
@@ -27,7 +26,6 @@ public class Browse extends _View_ {
 		resName.setCellValueFactory(d->d.getValue().nameProperty());
 		resCuisine.setCellValueFactory(d->d.getValue().cuisineProperty());
 		resPostCode.setCellValueFactory(d->d.getValue().postcodeProperty().asString());
-		resOwnerName.setCellValueFactory(d->d.getValue().getOwnerObjectProperty().fullNameProperty());
 		resRating.setCellValueFactory(d->d.getValue().averageRatingsProperty().asString("%1.1f"));
 		resPrice.setCellValueFactory(d->d.getValue().priceRangeProperty().asString("%2.2f"));
 		backButton.setOnAction(e->getMain().changeCenter(getPreviousPage()));

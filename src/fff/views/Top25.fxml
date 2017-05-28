@@ -26,7 +26,6 @@
                   <TableColumn fx:id="resName" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="resCuisine" prefWidth="75.0" text="Cuisine" />
                   <TableColumn fx:id="resPostCode" prefWidth="75.0" text="Postcode" />
-                  <TableColumn fx:id="resOwnerName" prefWidth="75.0" text="Owner" />
                   <TableColumn fx:id="resRating" prefWidth="75.0" text="Rating" />
                   <TableColumn fx:id="resPrice" prefWidth="75.0" text="Avrg.Price" />
                </columns>
