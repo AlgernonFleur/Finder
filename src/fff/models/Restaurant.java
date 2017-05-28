@@ -142,8 +142,12 @@ public class Restaurant {
 		for(Rating r:ratings){
 			averageRate+=r.getRating();
 		}
-		averageRate /= ratings.size();
-		this.averageRatings.set(averageRate);
+		if(ratings.size()!=0) {
+			averageRate /= ratings.size();
+			this.averageRatings.set(averageRate);
+		}else{
+			this.averageRatings.set(0);
+		}
 	}
 	
 	public void calculateMenu(){
@@ -151,7 +155,11 @@ public class Restaurant {
 		for(Food f:menu){
 			averagePrice+=f.getPrice();
 		}
-		averagePrice /= menu.size();
-		this.priceRange.set(averagePrice);
+		if(menu.size()!=0) {
+			averagePrice /= menu.size();
+			this.priceRange.set(averagePrice);
+		}else{
+			this.priceRange.set(0);
+		}
 	}
 }
