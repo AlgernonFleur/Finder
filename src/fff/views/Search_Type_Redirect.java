@@ -1,8 +1,13 @@
 package fff.views;
 
+import fff.App;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+
+import java.io.IOException;
 
 public class Search_Type_Redirect extends _View_{
 	
@@ -42,7 +47,17 @@ public class Search_Type_Redirect extends _View_{
 	}
 	
 	private void searchByName(){
-	
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("views/Search_Name.fxml"));
+		Node prevPage = getMain().getCenterPiece();
+		try {
+			getMain().changeCenter(loader.load());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Search_Name view = loader.getController();
+		view.setMain(getMain());
+		view.setPreviousPage(prevPage);
 	}
 	
 	private void searchByCuisine(){
