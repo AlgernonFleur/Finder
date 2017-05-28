@@ -17,8 +17,9 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <ButtonBar layoutX="227.0" layoutY="261.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="209.0">
+      <ButtonBar layoutX="161.0" layoutY="261.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="331.0">
          <buttons>
+            <Button fx:id="addFood" mnemonicParsing="false" text="Add Food" />
             <Button fx:id="editFood" mnemonicParsing="false" text="Edit Food" />
             <Button fx:id="removeFood" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Remove Food" />
          </buttons>

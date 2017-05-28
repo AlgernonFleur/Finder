@@ -18,6 +18,7 @@ public class Edit_Menu {
 	@FXML private TableColumn<Food,String> foodName;
 	@FXML private TableColumn<Food,String> foodPrice;
 	
+	@FXML private Button addFood;
 	@FXML private Button editFood;
 	@FXML private Button removeFood;
 	
@@ -26,6 +27,7 @@ public class Edit_Menu {
 	@FXML public void initialize(){
 		this.removeFood.setOnAction(e->removeSelected());
 		this.editFood.setOnAction(e->editSelected());
+		this.addFood.setOnAction(e->addNewFood());
 	}
 	
 	public void setMenu(ObservableList<Food> menu){
@@ -70,6 +72,31 @@ public class Edit_Menu {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	private void addNewFood(){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+				App.class.getResource("views/Add_Food.fxml"));
+			
+			Stage editFood = new Stage();
+			editFood.setScene(new Scene(loader.load()));
+			
+			Add_Food add_food_ctrl = loader.getController();
+			
+			editFood.setTitle("Edit Food");
+			editFood.initModality(Modality.WINDOW_MODAL);
+			editFood.initOwner(this.editFood.getScene().getWindow());
+			editFood.setResizable(false);
+			editFood.sizeToScene();
+			editFood.showAndWait();
+			
+			if(add_food_ctrl.isConfirmPressed())
+				this.menu.add(add_food_ctrl.getFood());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
