@@ -104,7 +104,7 @@
             </StackPane>
             <StackPane fx:id="browseRestaurants" prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REVIEWS">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Browse All Restaurants">
                      <font>
                         <Font size="18.0" />
                      </font>
