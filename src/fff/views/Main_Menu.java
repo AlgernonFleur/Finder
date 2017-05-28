@@ -142,5 +142,6 @@ public class Main_Menu {
 		accountButton.setText("New Account");
 		loginButton.setText("Login");
 		loginButton.setOnAction(e->openLoginDialog());
+		goHome();
 	}
 }
