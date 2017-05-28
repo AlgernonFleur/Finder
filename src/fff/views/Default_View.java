@@ -21,8 +21,7 @@ public class Default_View extends _View_{
 	@FXML private Pane searchRestaurant;
 	@FXML private Pane feelingLucky;
 	@FXML private Pane top25;
-	@FXML private Pane favourites;
-	@FXML private Pane reviews;
+	@FXML private Pane browseRestaurants;
 	
 	private Restaurant featuredRestaurant;
 	private Restaurant luckyRestaurant;
@@ -34,13 +33,10 @@ public class Default_View extends _View_{
 		this.featuredRestaurant =
 			_Overview_.getDatabase().getRestaurants().get(random.nextInt(size));
 		this.featuredRestaurantName.setText(featuredRestaurant.getName());
-		this.featuredRestaurantCuisine.setText(featuredRestaurant.getCuisine());
-		this.featuredRestaurantRating.setText(
+		this.featuredRestaurantCuisine.setText("Cuisine: "+featuredRestaurant.getCuisine());
+		this.featuredRestaurantRating.setText("Rating: "+
 			String.valueOf(
-				(int)featuredRestaurant.getAverageRatings()));
-		
-		this.luckyRestaurant =
-			_Overview_.getDatabase().getRestaurants().get(random.nextInt(size));
+				(int)featuredRestaurant.getAverageRatings())+"/10");
 		
 		this.featuredRestaurantPane.setOnMousePressed(e->{
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
@@ -52,9 +48,22 @@ public class Default_View extends _View_{
 				goToSearchPage();
 		});
 		
-		this.feelingLucky.setOnMousePressed(e->{
+		this.browseRestaurants.setOnMousePressed(e->{
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
+				goToSearchPage();
+		});
+		
+		this.top25.setOnMousePressed(e->{
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
+				goToSearchPage();
+		});
+		
+		this.feelingLucky.setOnMousePressed(e->{
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2){
+				this.luckyRestaurant =
+					_Overview_.getDatabase().getRestaurants().get(random.nextInt(size));
 				goToRestaurantPage(luckyRestaurant);
+			}
 		});
 	}
 	

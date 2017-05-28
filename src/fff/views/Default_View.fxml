@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fff.views.Default_View">
+<GridPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fff.views.Default_View">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -31,12 +31,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Featured" GridPane.valignment="TOP">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Featured Restaurant" GridPane.valignment="TOP">
                <font>
                   <Font size="14.0" />
                </font>
                <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </Text>
             <Text fx:id="featuredRestaurantName" strokeType="OUTSIDE" strokeWidth="0.0" text="RESTAURANT" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -59,7 +59,6 @@
       <GridPane gridLinesVisible="true" GridPane.rowIndex="2">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
@@ -68,17 +67,19 @@
          <children>
             <StackPane fx:id="top25" prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TOP 25" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TOP 25">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
                </children>
             </StackPane>
-            <StackPane fx:id="favourites" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <StackPane fx:id="feelingLucky" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FAVES" />
-               </children>
-            </StackPane>
-            <StackPane fx:id="reviews" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REVIEWS" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I'm Feeling Lucky" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
                </children>
             </StackPane>
          </children>
@@ -101,9 +102,9 @@
                   </Text>
                </children>
             </StackPane>
-            <StackPane fx:id="feelingLucky" prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <StackPane fx:id="browseRestaurants" prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I'm Feeling Lucky">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REVIEWS">
                      <font>
                         <Font size="18.0" />
                      </font>
