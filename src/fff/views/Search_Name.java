@@ -56,13 +56,13 @@ public class Search_Name extends _View_ {
 			alert.setContentText("Your search query returned no results!");
 			alert.showAndWait();
 		}else{
-			sort();
 			resultsTableView.setItems(results);
 			resName.setCellValueFactory(d->d.getValue().nameProperty());
 			resCuisine.setCellValueFactory(d->d.getValue().cuisineProperty());
 			resPostcode.setCellValueFactory(d->d.getValue().postcodeProperty().asString());
 			resRating.setCellValueFactory(d->d.getValue().averageRatingsProperty().asString("%1.1f"));
-			resPrice.setCellValueFactory(d->d.getValue().averageRatingsProperty().asString("%2.2f"));
+			resPrice.setCellValueFactory(d->d.getValue().priceRangeProperty().asString("%2.2f"));
+			sort();
 		}
 	}
 	
