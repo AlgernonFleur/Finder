@@ -49,12 +49,12 @@ public class Default_View extends _View_{
 		
 		this.browseRestaurants.setOnMousePressed(e->{
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
-				goToSearchPage();
+				goToBrowsePage();
 		});
 		
 		this.top25.setOnMousePressed(e->{
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2)
-				goToSearchPage();
+				goToTop25();
 		});
 		
 		this.feelingLucky.setOnMousePressed(e->{
@@ -85,15 +85,23 @@ public class Default_View extends _View_{
 	
 	private void goToSearchPage(){
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(App.class.getResource("views/Search_Page.fxml"));
+		loader.setLocation(App.class.getResource("views/Search_Type_Redirect.fxml"));
 		Node prevPage = getMain().getCenterPiece();
 		try {
 			getMain().changeCenter(loader.load());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Search_Page view = loader.getController();
+		Search_Type_Redirect view = loader.getController();
 		view.setMain(getMain());
 		view.setPreviousPage(prevPage);
+	}
+	
+	private void goToBrowsePage(){
+	
+	}
+	
+	private void goToTop25(){
+	
 	}
 }
