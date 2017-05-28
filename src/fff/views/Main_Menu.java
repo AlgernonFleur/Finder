@@ -182,7 +182,6 @@ public class Main_Menu {
 				accountButton.setOnAction(e->goToUserAccView());
 				goHome();
 			}
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
