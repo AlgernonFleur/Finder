@@ -61,7 +61,17 @@ public class Search_Type_Redirect extends _View_{
 	}
 	
 	private void searchByCuisine(){
-	
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(App.class.getResource("views/Search_Cuisine.fxml"));
+		Node prevPage = getMain().getCenterPiece();
+		try {
+			getMain().changeCenter(loader.load());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Search_Cuisine view = loader.getController();
+		view.setMain(getMain());
+		view.setPreviousPage(prevPage);
 	}
 	
 	private void searchByPostcode(){
