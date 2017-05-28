@@ -99,7 +99,7 @@
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cuisine" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Postcode" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" GridPane.rowIndex="2" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Average Rating" GridPane.rowIndex="2" />
                         <Text fx:id="resCuisine" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
                         <Text fx:id="resPostcode" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Text fx:id="resRating" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
