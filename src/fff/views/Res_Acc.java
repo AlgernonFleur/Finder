@@ -9,14 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class Res_Acc extends _View_ {
 	
@@ -38,6 +37,7 @@ public class Res_Acc extends _View_ {
 	
 	@FXML private Button backButton;
 	@FXML private Button ownerButton;
+	@FXML private Button favouriteButton;
 	@FXML private Button ratingButton;
 	
 	private Restaurant restaurant;
@@ -107,21 +107,69 @@ public class Res_Acc extends _View_ {
 		this.ratingsCustomer.setCellValueFactory(data->data.getValue().getCustomerObjectProperty().fullNameProperty());
 		this.ratingsValue.setCellValueFactory(data->data.getValue().ratingProperty().asString());
 		
-		if(_Overview_.getUserAccount()==null)this.ratingButton.setVisible(false);
-		else if(_Overview_.getUserAccount().getClass().getSimpleName().equals("Customer")){
+		if(_Overview_.getUserAccount()==null){
+			this.ratingButton.setOnAction(e->notLoggedInAlert());
+		} else if(_Overview_.getUserAccount().getClass().getSimpleName().equals("Customer")){
 			boolean customerAlreadyRated = false;
 			for(Rating r:restaurant.getRatings()){
 				if (r.getCustomerObjectProperty().equals(_Overview_.getUserAccount())){
-					this.ratingButton.setText("Edit Rating");
+					this.ratingButton.setText("Edit Review");
 					this.ratingButton.setOnAction(e->editRating(r));
 					customerAlreadyRated = true;
 				}
 			}
 			if(!customerAlreadyRated){
-				this.ratingButton.setText("Give Rating");
+				this.ratingButton.setText("Review");
 				this.ratingButton.setOnAction(e->customerNewRating());
 			}
+			
+			Customer c = (Customer) _Overview_.getUserAccount();
+			if(c.getFavourites().contains(restaurant)){
+				this.favouriteButton.setText("Remove fave");
+				this.favouriteButton.setOnAction(e->removeFromFavourites(c));
+			}else{
+				this.favouriteButton.setText("Add fave");
+				this.favouriteButton.setOnAction(e->addToFavourites(c));
+			}
+		} else {
+			this.ratingButton.setOnAction(e->notLoggedInAlert());
 		}
+	}
+	
+	private void removeFromFavourites(Customer c){
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Remove from favourites");
+		alert.setHeaderText(null);
+		alert.setContentText("Do you wish to remove "+restaurant.getName()+" from your favourites?");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			c.getFavourites().remove(restaurant);
+			this.favouriteButton.setText("Add fave");
+			this.favouriteButton.setOnAction(e->addToFavourites(c));
+		}
+	}
+	
+	private void addToFavourites(Customer c){Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Add to favourites");
+		alert.setHeaderText(null);
+		alert.setContentText("Do you wish to add "+restaurant.getName()+" to your favourites?");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			c.getFavourites().add(restaurant);
+			this.favouriteButton.setText("Remove fave");
+			this.favouriteButton.setOnAction(e->removeFromFavourites(c));
+		}
+	}
+	
+	private void notLoggedInAlert(){
+		Alert alert = new Alert(Alert.AlertType.WARNING);
+		alert.setTitle("Must be logged in");
+		alert.setHeaderText(null);
+		alert.setContentText("You must be logged in as a Customer to rate!");
+		
+		alert.showAndWait();
 	}
 	
 	private void editRating(Rating r){
@@ -175,7 +223,7 @@ public class Res_Acc extends _View_ {
 			if(dialog.isRatingApproved()){
 				_Overview_.getDatabase().getRatings().add(r);
 				restaurant.getRatings().add(r);
-				this.ratingButton.setText("Edit Rating");
+				this.ratingButton.setText("Edit Review");
 				this.ratingButton.setOnAction(e->editRating(r));
 			}
 		} catch (IOException e) {
