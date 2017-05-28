@@ -39,6 +39,7 @@ public class User_Acc extends _View_ {
 	@FXML private TableColumn<Restaurant,String> restaurantRating;
 	@FXML private TableColumn<Restaurant,String> restaurantPrice;
 	@FXML private Button viewRestaurant1;
+	@FXML private Button addRestaurant;
 	
 	@FXML private TableView<Restaurant> restaurantTableView1;
 	@FXML private TableColumn<Restaurant,String> restaurantName1;
@@ -47,6 +48,7 @@ public class User_Acc extends _View_ {
 	@FXML private TableColumn<Restaurant,String> restaurantRating1;
 	@FXML private TableColumn<Restaurant,String> restaurantPrice1;
 	@FXML private Button viewRestaurant11;
+	@FXML private Button editRating;
 	
 	@FXML private TableView<Rating> ratingTableView;
 	@FXML private TableColumn<Rating,String> ratingResName;
@@ -54,7 +56,6 @@ public class User_Acc extends _View_ {
 	@FXML private Button viewRestaurant2;
 	@FXML private Button removeFave;
 	
-	@FXML private Button editRating;
 	
 	private UserAccount user;
 	
@@ -166,12 +167,20 @@ public class User_Acc extends _View_ {
 		}
 		
 		if(_Overview_.getUserAccount()!=null)
-			if(_Overview_.getUserAccount().equals(user)){
+			if(_Overview_.getUserAccount().equals(user) &&
+				_Overview_.getUserAccount().getClass().getSimpleName().equals("Customer")){
 				this.removeFave.setOnAction(e->removeFavourite());
-			}else{
+			}else if(_Overview_.getUserAccount().equals(user) &&
+				_Overview_.getUserAccount().getClass().getSimpleName().equals("Owner")) {
+				this.addRestaurant.setOnAction(e->addNewRestaurant());
+			}else {
 				this.removeFave.setVisible(false);
+				this.addRestaurant.setVisible(false);
 			}
-		else this.removeFave.setVisible(false);
+		else {
+			this.removeFave.setVisible(false);
+			this.addRestaurant.setVisible(false);
+		}
 	}
 	
 	private void openChangeDetailsDialog(){
@@ -234,5 +243,28 @@ public class User_Acc extends _View_ {
 	private void removeFavourite(){
 		int selected = restaurantTableView1.getSelectionModel().getSelectedIndex();
 		if(selected>=0)restaurantTableView1.getItems().remove(selected);
+	}
+	
+	private void addNewRestaurant(){
+		try{
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+				App.class.getResource("views/Create_Restaurant.fxml"));
+			
+			Stage loginDialog = new Stage();
+			loginDialog.setScene(new Scene(loader.load()));
+			
+			Create_Restaurant dialog = loader.getController();
+			dialog.setOwner((Owner) user);
+			
+			loginDialog.setTitle("Change Details");
+			loginDialog.initModality(Modality.WINDOW_MODAL);
+			loginDialog.initOwner(_Overview_.getStage());
+			loginDialog.setResizable(false);
+			loginDialog.sizeToScene();
+			loginDialog.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
