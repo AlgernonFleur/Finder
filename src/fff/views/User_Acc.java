@@ -30,6 +30,7 @@ public class User_Acc extends _View_ {
 	@FXML private TabPane tabs;
 	@FXML private Tab resTab;
 	@FXML private Tab ratTab;
+	@FXML private Tab resTab1;
 	
 	@FXML private TableView<Restaurant> restaurantTableView;
 	@FXML private TableColumn<Restaurant,String> restaurantName;
@@ -39,6 +40,15 @@ public class User_Acc extends _View_ {
 	@FXML private TableColumn<Restaurant,Float> restaurantRating;
 	@FXML private TableColumn<Restaurant,Float> restaurantPrice;
 	@FXML private Button viewRestaurant1;
+	
+	@FXML private TableView<Restaurant> restaurantTableView1;
+	@FXML private TableColumn<Restaurant,String> restaurantName1;
+	@FXML private TableColumn<Restaurant,Integer> restaurantPostcode1;
+	@FXML private TableColumn<Restaurant,String> restaurantCuisine1;
+	@FXML private TableColumn<Restaurant,String> restaurantOwner1;
+	@FXML private TableColumn<Restaurant,Float> restaurantRating1;
+	@FXML private TableColumn<Restaurant,Float> restaurantPrice1;
+	@FXML private Button viewRestaurant11;
 	
 	@FXML private TableView<Rating> ratingTableView;
 	@FXML private TableColumn<Rating,String> ratingResName;
@@ -58,6 +68,10 @@ public class User_Acc extends _View_ {
 		this.ratingTableView.setOnMousePressed(e->{
 			if (e.isPrimaryButtonDown() && e.getClickCount()==2) goToRestaurant2();
 		});
+		this.viewRestaurant11.setOnAction(e->goToRestaurant3());
+		this.restaurantTableView1.setOnMousePressed(e->{
+			if (e.isPrimaryButtonDown() && e.getClickCount()==2) goToRestaurant3();
+		});
 		this.editRating.setOnAction(e->editSelectedRating());
 	}
 	
@@ -72,6 +86,11 @@ public class User_Acc extends _View_ {
 	
 	private void goToRestaurant2(){
 		Restaurant r = ratingTableView.getSelectionModel().getSelectedItem().getRestaurantObjectProperty();
+		if(r!=null) changeToRes(r);
+	}
+	
+	private void goToRestaurant3(){
+		Restaurant r = restaurantTableView1.getSelectionModel().getSelectedItem();
 		if(r!=null) changeToRes(r);
 	}
 	
@@ -106,6 +125,8 @@ public class User_Acc extends _View_ {
 			case "Owner":
 				this.ratTab.setDisable(true);
 				this.ratTab.setText("");
+				this.resTab1.setDisable(true);
+				this.resTab1.setText("");
 				this.tabs.getSelectionModel().select(0);
 				
 				restaurantTableView.setItems(((Owner) user).getOwnedRestaurants());
@@ -124,6 +145,14 @@ public class User_Acc extends _View_ {
 				ratingTableView.setItems(((Customer) user).getRatings());
 				ratingResName.setCellValueFactory(data->data.getValue().getRestaurantObjectProperty().nameProperty());
 				ratingValue.setCellValueFactory(data->data.getValue().ratingProperty().asObject());
+				
+				restaurantTableView1.setItems(((Customer) user).getFavourites());
+				restaurantName1.setCellValueFactory(data->data.getValue().nameProperty());
+				restaurantPostcode1.setCellValueFactory(data->data.getValue().postcodeProperty().asObject());
+				restaurantCuisine1.setCellValueFactory(data->data.getValue().cuisineProperty());
+				restaurantOwner1.setCellValueFactory(data->data.getValue().ownerIDProperty());
+				restaurantRating1.setCellValueFactory(data->data.getValue().averageRatingsProperty().asObject());
+				restaurantPrice1.setCellValueFactory(data->data.getValue().priceRangeProperty().asObject());
 				break;
 			default:
 				break;
