@@ -29,10 +29,11 @@ public class Database {
 	}
 	
 	public void readData() throws IOException {
-		readUsers("admin");
-		readUsers("owner");
-		readUsers("customer");
-		readRestaurants();
+		readAdmins();
+		readOwners();
+		readCustomers();
+		readRes();
+		//readRestaurants();
 		readRatings();
 		calculateAverageRatingsAndMenu();
 	}
@@ -73,6 +74,105 @@ public class Database {
 			userBr.close();
 		}
 		br.close();
+	}
+	private void readAdmins(){
+		for(int i=0;i<5;i++){
+			String path = "data/users/admins/A"+String.format("%05d",i)+"/details.csv";
+			InputStream data = Database.class.getResourceAsStream(path);
+			BufferedReader br = new BufferedReader(new InputStreamReader(data));
+			try {
+				String[] line = br.readLine().split(",");
+				String ID = line[0];
+				String username = line[1];
+				String password = line[2];
+				String fullName = line[3];
+				String email = line[4];
+				
+				Admin a = new Admin(ID,username,password,fullName,email);
+				admins.add(a);
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void readOwners(){
+		for(int i=0;i<20;i++){
+			String path = "data/users/owners/B"+String.format("%05d",i)+"/details.csv";
+			InputStream data = Database.class.getResourceAsStream(path);
+			BufferedReader br = new BufferedReader(new InputStreamReader(data));
+			try {
+				String[] line = br.readLine().split(",");
+				String ID = line[0];
+				String username = line[1];
+				String password = line[2];
+				String fullName = line[3];
+				String email = line[4];
+				
+				Owner o = new Owner(ID,username,password,fullName,email);
+				owners.add(o);
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void readCustomers(){
+		for(int i=0;i<475;i++){
+			String path = "data/users/customers/C"+String.format("%05d",i)+"/details.csv";
+			InputStream data = Database.class.getResourceAsStream(path);
+			BufferedReader br = new BufferedReader(new InputStreamReader(data));
+			try {
+				String[] line = br.readLine().split(",");
+				String ID = line[0];
+				String username = line[1];
+				String password = line[2];
+				String fullName = line[3];
+				String email = line[4];
+				
+				Customer c = new Customer(ID,username,password,fullName,email);
+				customers.add(c);
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void readRes() throws IOException{
+		String path = "data/restaurants";
+		for(int i=0;i<50;i++){
+			String resPath = path+"/D"+String.format("%05d",i)+"/details.csv";
+			InputStream resData = Database.class.getResourceAsStream(resPath);
+			BufferedReader resBr = new BufferedReader(new InputStreamReader(resData));
+			
+			String[] line = resBr.readLine().split(",");
+			String id = line[0];
+			String name = line[1];
+			int post = Integer.parseInt(line[2]);
+			String cuisine = line[3];
+			String owner = line[4];
+			
+			Restaurant restaurant = new Restaurant(id,name,post,cuisine,owner);
+			restaurants.add(restaurant);
+			
+			String menuPath = path+"/D"+String.format("%05d",i)+"/menu.csv";
+			InputStream menuData = Database.class.getResourceAsStream(menuPath);
+			BufferedReader menuBr = new BufferedReader(new InputStreamReader(menuData));
+			String men;
+			while((men=menuBr.readLine())!=null){
+				String[] line2 = men.split(",");
+				Food food = new Food(line2[0],Float.parseFloat(line2[1]));
+				restaurant.addFood(food);
+			}
+			Owner o = findOwner(owner);
+			o.addRestaurant(restaurant);
+			restaurant.setOwnerObjectProperty(o);
+			
+			resBr.close();
+		}
 	}
 	
 	private void readRestaurants() throws IOException {

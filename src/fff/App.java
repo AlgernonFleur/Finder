@@ -11,11 +11,15 @@ import java.io.IOException;
 
 public class App extends Application {
 	
-	public App() throws IOException {
-		Database database = new Database();
-		database.readData();
-		_Overview_.setDatabase(database);
-		_Overview_.setUserAccount(null);
+	public App(){
+		try {
+			Database database = new Database();
+			database.readData();
+			_Overview_.setDatabase(database);
+			_Overview_.setUserAccount(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
