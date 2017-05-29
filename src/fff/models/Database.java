@@ -155,7 +155,15 @@ public class Database {
 			String cuisine = line[3];
 			String owner = line[4];
 			
-			Restaurant restaurant = new Restaurant(id,name,post,cuisine,owner);
+			resBr.close();
+			
+			String addPath = path+"/D"+String.format("%05d",i)+"/address.txt";
+			InputStream data2 = Database.class.getResourceAsStream(addPath);
+			BufferedReader br2 = new BufferedReader(new InputStreamReader(data2));
+			
+			String address = br2.readLine();
+			br2.close();
+			Restaurant restaurant = new Restaurant(id,name,post,cuisine,owner,address);
 			restaurants.add(restaurant);
 			
 			String menuPath = path+"/D"+String.format("%05d",i)+"/menu.csv";
@@ -171,7 +179,6 @@ public class Database {
 			o.addRestaurant(restaurant);
 			restaurant.setOwnerObjectProperty(o);
 			
-			resBr.close();
 		}
 	}
 	
@@ -192,7 +199,7 @@ public class Database {
 			String cuisine = line[3];
 			String owner = line[4];
 			
-			Restaurant restaurant = new Restaurant(id,name,post,cuisine,owner);
+			Restaurant restaurant = new Restaurant(id,name,post,cuisine,owner, "");
 			restaurants.add(restaurant);
 			
 			String menuPath = path+"/"+res+"/menu.csv";

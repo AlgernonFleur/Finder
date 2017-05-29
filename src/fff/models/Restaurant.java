@@ -9,6 +9,7 @@ public class Restaurant {
 	private StringProperty ID;
 	private StringProperty name;
 	private IntegerProperty postcode;
+	private StringProperty address;
 	private StringProperty cuisine;
 	private StringProperty ownerID;
 	private ObservableList<Rating> ratings;
@@ -18,10 +19,11 @@ public class Restaurant {
 	private FloatProperty averageRatings;
 	private FloatProperty priceRange;
 	
-	public Restaurant(String ID, String name, int postcode, String cuisine, String ownerID){
+	public Restaurant(String ID, String name, int postcode, String cuisine, String ownerID, String address){
 		this.ID = new SimpleStringProperty(ID);
 		this.name = new SimpleStringProperty(name);
 		this.postcode = new SimpleIntegerProperty(postcode);
+		this.address = new SimpleStringProperty(address);
 		this.cuisine = new SimpleStringProperty(cuisine);
 		this.ownerID = new SimpleStringProperty(ownerID);
 		this.ratings = FXCollections.observableArrayList();
@@ -40,6 +42,19 @@ public class Restaurant {
 	}
 	
 	//<editor-fold desc="--Variable Getters and Setters--">
+	
+	public String getAddress() {
+		return address.get();
+	}
+	
+	public StringProperty addressProperty() {
+		return address;
+	}
+	
+	public void setAddress(String address) {
+		this.address.set(address);
+	}
+	
 	public String getID() {
 		return ID.get();
 	}

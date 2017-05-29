@@ -92,6 +92,8 @@ public class Search_Price extends _View_ {
 		ObservableList<Restaurant> results = resultsTableView.getItems();
 		switch(sortOptions.getSelectionModel().getSelectedIndex()){
 			default:
+			case 8: results.sort(Sort.ResPriceCompAsc);break;
+			case 9: results.sort(Sort.ResPriceCompDes);break;
 			case 0: results.sort(Sort.ResNameCompAsc);break;
 			case 1: results.sort(Sort.ResNameCompDes);break;
 			case 2: results.sort(Sort.ResCuisineCompAsc);break;
@@ -100,8 +102,6 @@ public class Search_Price extends _View_ {
 			case 5: results.sort(Sort.ResPostcodeCompDes);break;
 			case 6: results.sort(Sort.ResRatingCompAsc);break;
 			case 7: results.sort(Sort.ResRatingCompDes);break;
-			case 8: results.sort(Sort.ResPriceCompAsc);break;
-			case 9: results.sort(Sort.ResPriceCompDes);break;
 		}
 	}
 	

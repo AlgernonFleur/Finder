@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
@@ -21,7 +22,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="restaurantTableView" layoutX="50.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+            <TableView fx:id="restaurantTableView" layoutX="50.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0">
               <columns>
                 <TableColumn fx:id="resName" prefWidth="75.0" text="Name" />
                 <TableColumn fx:id="resCuisine" prefWidth="75.0" text="Cuisine" />
@@ -33,6 +34,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
+            <ComboBox fx:id="sortOptions" layoutX="75.0" layoutY="2.0" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
          </children>
       </AnchorPane>
    </center>

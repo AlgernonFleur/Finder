@@ -13,6 +13,7 @@ public class Create_Restaurant {
 	@FXML private Label resID;
 	@FXML private TextField newResName;
 	@FXML private TextField newResPostcode;
+	@FXML private TextField newResAddress;
 	@FXML private TextField newResCuisine;
 	
 	@FXML private Button confirmButton;
@@ -28,7 +29,7 @@ public class Create_Restaurant {
 		this.cancelButton.setOnAction(e->cancel());
 		
 		String ID = "D"+String.format("%05d",_Overview_.getDatabase().getRestaurants().size());
-		this.newRestaurant = new Restaurant(ID,"",0,"","");
+		this.newRestaurant = new Restaurant(ID,"",0,"","","");
 		this.resID.setText(ID);
 	}
 	
@@ -37,6 +38,7 @@ public class Create_Restaurant {
 		
 		if(newResName.getText()==null||newResName.getText().length()==0) error+="Invalid Name\n";
 		if(newResPostcode.getText()==null||newResPostcode.getText().length()==0) error+="Invalid Postcode\n";
+		if(newResAddress.getText()==null||newResAddress.getText().length()==0) error+="Invalid Address\n";
 		if(newResCuisine.getText()==null||newResCuisine.getText().length()==0) error+="Invalid Cuisine\n";
 		
 		if(error.length()==0){
@@ -48,6 +50,7 @@ public class Create_Restaurant {
 				newRestaurant.setCuisine(newResCuisine.getText());
 				newRestaurant.setOwnerID(owner.getID());
 				newRestaurant.setOwnerObjectProperty(owner);
+				newRestaurant.setAddress(newResAddress.getText());
 				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 				alert.setTitle("Restaurant Creation");
 				alert.setHeaderText("Confirm adding new Restaurant?");

@@ -33,8 +33,8 @@ public class App extends Application {
 		primaryStage.setScene(new Scene(loader.load()));
 		
 		primaryStage.setTitle("Fine Food Finder");
-		primaryStage.setResizable(false);
-		primaryStage.sizeToScene();
+		//primaryStage.setResizable(false);
+		//primaryStage.sizeToScene();
 		primaryStage.show();
 	}
 	

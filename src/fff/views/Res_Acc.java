@@ -25,6 +25,7 @@ public class Res_Acc extends _View_ {
 	@FXML private Text resName;
 	@FXML private Text resCuisine;
 	@FXML private Text resPostcode;
+	@FXML private Text resAddress;
 	@FXML private Text resRating;
 	@FXML private Text resAveragePrice;
 	
@@ -101,6 +102,7 @@ public class Res_Acc extends _View_ {
 		this.resName.setText(this.restaurant.getName());
 		this.resCuisine.setText(this.restaurant.getCuisine());
 		this.resPostcode.setText(String.valueOf(this.restaurant.getPostcode()));
+		this.resAddress.setText(this.restaurant.getAddress());
 		this.resRating.setText(String.format("%1.1f",this.restaurant.getAverageRatings()));
 		this.resAveragePrice.setText(String.format("%2.2f",this.restaurant.getPriceRange()));
 		
@@ -301,6 +303,7 @@ public class Res_Acc extends _View_ {
 			this.resName.setText(this.restaurant.getName());
 			this.resCuisine.setText(this.restaurant.getCuisine());
 			this.resPostcode.setText(String.valueOf(this.restaurant.getPostcode()));
+			this.resAddress.setText(this.restaurant.getAddress());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

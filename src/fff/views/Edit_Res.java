@@ -12,6 +12,7 @@ public class Edit_Res {
 	@FXML private Label resID;
 	@FXML private TextField newResName;
 	@FXML private TextField newResPostcode;
+	@FXML private TextField newResAddress;
 	@FXML private TextField newResCuisine;
 	
 	@FXML private Button confirmButton;
@@ -29,6 +30,7 @@ public class Edit_Res {
 		this.resID.setText(restaurant.getID());
 		this.newResName.setText(restaurant.getName());
 		this.newResPostcode.setText(String.valueOf(restaurant.getPostcode()));
+		this.newResAddress.setText(restaurant.getAddress());
 		this.newResCuisine.setText(restaurant.getCuisine());
 	}
 	
@@ -37,6 +39,7 @@ public class Edit_Res {
 		
 		if(newResName.getText()==null||newResName.getText().length()==0) error+="Invalid Name\n";
 		if(newResPostcode.getText()==null||newResPostcode.getText().length()==0) error+="Invalid Postcode\n";
+		if(newResAddress.getText()==null||newResAddress.getText().length()==0) error+="Invalid Address\n";
 		if(newResCuisine.getText()==null||newResCuisine.getText().length()==0) error+="Invalid Cuisine\n";
 		
 		if(error.length()==0){
@@ -51,6 +54,7 @@ public class Edit_Res {
 				if(result.get()==ButtonType.OK){
 					restaurant.setName(newResName.getText());
 					restaurant.setPostcode(postcode);
+					restaurant.setAddress(newResAddress.getText());
 					restaurant.setCuisine(newResCuisine.getText());
 					Stage stage = (Stage) cancelButton.getScene().getWindow();
 					stage.close();
